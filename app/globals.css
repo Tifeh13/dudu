@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --page: #f4f0e8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream text-ink font-sans antialiased;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  ::selection {
+    background: #ded4c3;
+    color: #1b1917;
+  }
+
+  :focus-visible {
+    outline: 2px solid #1b1917;
+    outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-serif font-light;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  input[type='date'],
+  input[type='time'] {
+    min-width: 0;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[10px] uppercase tracking-label text-ink-muted;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border px-6 py-3 text-[10px] uppercase tracking-label transition-all duration-300 focus-visible:outline-offset-4 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-solid {
+    @apply btn border-ink bg-ink text-cream-50 hover:bg-transparent hover:text-ink;
+  }
+
+  .btn-ghost {
+    @apply btn border-ink/30 text-ink hover:border-ink hover:bg-ink hover:text-cream-50;
+  }
+
+  .btn-light {
+    @apply btn border-cream-50/50 text-cream-50 hover:border-cream-50 hover:bg-cream-50 hover:text-ink;
+  }
+
+  .field {
+    @apply w-full rounded-none border border-line bg-cream-50 px-4 py-3 text-sm text-ink placeholder:text-ink-muted/70 transition-colors focus:border-ink focus:outline-none;
+  }
+
+  .field-label {
+    @apply mb-2 block text-[10px] uppercase tracking-label text-ink-soft;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-xs text-[#8f3a2f];
+  }
+
+  .rule {
+    @apply h-px w-full bg-line;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
