@@ -44,13 +44,12 @@ public/media/   portfolio films (MP4)
 
 ## Replace the logo
 
-The navbar uses a wordmark cropped from your supplied logo; the footer shows the
-full logo. Replace these files to rebrand:
+The header and footer both show your supplied logo. Replace this file to rebrand
+(the social-sharing image is separate, in `public/images/og/`):
 
 | File | Purpose | Size |
 | --- | --- | --- |
-| `public/images/brand/logo.png` | Full logo (footer, social sharing) | 1000 × 1032 |
-| `public/images/brand/logo-wordmark.png` | Wordmark used in the navbar | 896 × 51, transparent |
+| `public/images/brand/logo.png` | Logo in the header and footer | 1000 × 1032, transparent |
 | `app/icon.png` | App icon | 512 × 512 |
 | `app/apple-icon.png` | iOS icon | 180 × 180 |
 | `app/favicon.ico` | Browser favicon (16, 32, 48) | multi-size ICO |

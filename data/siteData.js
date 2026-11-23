@@ -14,8 +14,6 @@ export const brand = {
   shortName: 'Duduyemi',
   initials: 'DM',
   logo: '/images/brand/logo.png',
-  // Wordmark cropped from the supplied logo, used in the navigation bar.
-  logoWordmark: '/images/brand/logo-wordmark.png',
   // PLACEHOLDER (tagline): three options supplied below — the strongest is in use.
   tagline: 'Beauty, made personal.',
   taglineOptions: [
@@ -546,7 +544,7 @@ export const portfolioMedia = [
 export const aboutImages = {
   portrait: {
     src: '/images/about/about-artist.jpg',
-    alt: 'Duduyemi, makeup artist and founder of Duduyemi Makeover, in the studio.',
+    alt: 'Duduyemi, makeup artist and creative director of Duduyemi Makeover, in the studio.',
     width: 900,
     height: 1600,
   },

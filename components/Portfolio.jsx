@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Plus } from 'lucide-react';
 import { portfolio, portfolioCategories } from '@/data/siteData';
@@ -98,8 +99,9 @@ export default function Portfolio() {
           <p className="text-[10px] uppercase tracking-label text-ink-muted">
             {portfolio.length} featured photographs · films in the full portfolio
           </p>
-          <a
+          <Link
             href="/portfolio"
+            prefetch
             className="group inline-flex items-center gap-3 text-[10px] uppercase tracking-label text-ink"
           >
             View the full portfolio
@@ -108,7 +110,7 @@ export default function Portfolio() {
               strokeWidth={1.5}
               className="transition-transform duration-300 group-hover:translate-x-1"
             />
-          </a>
+          </Link>
         </div>
       </div>
 

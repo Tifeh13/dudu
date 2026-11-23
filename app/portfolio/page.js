@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PortfolioGallery from '@/components/PortfolioGallery';
 import WhatsAppFloat from '@/components/WhatsAppFloat';
-import Reveal from '@/components/Reveal';
+import SiteLink from '@/components/SiteLink';
 import { portfolioMedia, seo } from '@/data/siteData';
 
 export const metadata = {
@@ -29,19 +29,17 @@ export default function PortfolioPage() {
       <main className="pt-[72px] lg:pt-[84px]">
         <section className="border-b border-line bg-cream py-14 lg:py-20">
           <div className="shell">
-            <Reveal>
-              <p className="eyebrow">Portfolio</p>
-              <h1 className="mt-5 max-w-3xl font-serif text-4xl font-light leading-[1.02] sm:text-5xl lg:text-6xl">
-                The full portfolio.
-              </h1>
-              <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink-soft">
-                Bridal, traditional and event looks from the studio and on location.
-                Photographs open full screen; films play only when you tap them.
-              </p>
-              <p className="mt-6 text-[10px] uppercase tracking-label text-ink-muted">
-                {images} photographs · {films} films · Lagos &amp; Ibadan
-              </p>
-            </Reveal>
+            <p className="eyebrow">Portfolio</p>
+            <h1 className="mt-5 max-w-3xl font-serif text-4xl font-light leading-[1.02] sm:text-5xl lg:text-6xl">
+              The full portfolio.
+            </h1>
+            <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink-soft">
+              Bridal, traditional and event looks from the studio and on location.
+              Photographs open full screen; films play only when you tap them.
+            </p>
+            <p className="mt-6 text-[10px] uppercase tracking-label text-ink-muted">
+              {images} photographs · {films} films · Lagos &amp; Ibadan
+            </p>
           </div>
         </section>
 
@@ -56,12 +54,12 @@ export default function PortfolioPage() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
-              <a href="/#booking" className="btn-solid">
+              <SiteLink href="/#booking" className="btn-solid">
                 Book an appointment
-              </a>
-              <a href="/#services" className="btn-ghost">
+              </SiteLink>
+              <SiteLink href="/#services" className="btn-ghost">
                 View services
-              </a>
+              </SiteLink>
             </div>
           </div>
         </section>

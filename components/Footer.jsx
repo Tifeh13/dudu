@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { brand, contact, navLinks, pricing } from '@/data/siteData';
+import SiteLink from './SiteLink';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,7 +10,7 @@ export default function Footer() {
       <div className="shell py-14 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.6fr_0.8fr]">
           <div>
-            <a href="/#home" aria-label={`${brand.name} — back to top`}>
+            <SiteLink href="/#home" aria-label={`${brand.name} — back to top`}>
               <Image
                 src={brand.logo}
                 alt={`${brand.name} logo`}
@@ -17,7 +18,7 @@ export default function Footer() {
                 height={1032}
                 className="h-24 w-auto sm:h-28"
               />
-            </a>
+            </SiteLink>
             <p className="mt-5 max-w-xs font-serif text-lg font-light italic text-ink-soft">
               {brand.tagline}
             </p>
@@ -32,12 +33,12 @@ export default function Footer() {
             <ul className="mt-4 space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <SiteLink
                     href={link.href}
                     className="text-[11px] uppercase tracking-label text-ink-soft transition-colors hover:text-ink"
                   >
                     {link.label}
-                  </a>
+                  </SiteLink>
                 </li>
               ))}
             </ul>

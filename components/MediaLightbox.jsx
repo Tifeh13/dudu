@@ -81,7 +81,7 @@ export default function MediaLightbox({ items, index, onClose, onChange }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.25 }}
-      className="fixed inset-0 z-[70] bg-ink/95 backdrop-blur-sm"
+      className="fixed inset-0 z-[70] overflow-hidden bg-ink/95 backdrop-blur-sm"
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
@@ -102,7 +102,7 @@ export default function MediaLightbox({ items, index, onClose, onChange }) {
           </button>
         </div>
 
-        <div className="relative flex flex-1 items-center justify-center px-4 pb-4 sm:px-16">
+        <div className="relative flex min-h-0 flex-1 items-center justify-center px-4 pb-4 sm:px-16">
           <button
             type="button"
             onClick={goPrev}
@@ -117,7 +117,7 @@ export default function MediaLightbox({ items, index, onClose, onChange }) {
             initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.985 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="relative h-full w-full max-w-4xl"
+            className="relative h-full min-h-0 w-full max-w-4xl overflow-hidden"
           >
             {item.type === 'video' ? (
               <video

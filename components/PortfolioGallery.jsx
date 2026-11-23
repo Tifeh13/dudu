@@ -2,18 +2,18 @@
 
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import dynamic from 'next/dynamic';
 import { Play } from 'lucide-react';
 import { portfolioCategories, portfolioMedia } from '@/data/siteData';
-import MediaLightbox from './MediaLightbox';
-import Reveal from './Reveal';
+
+// The viewer is only downloaded when someone opens a photograph or film.
+const MediaLightbox = dynamic(() => import('./MediaLightbox'), { ssr: false });
 
 const filters = [...portfolioCategories, { id: 'film', label: 'Films' }];
 
 export default function PortfolioGallery() {
   const [active, setActive] = useState('all');
   const [openIndex, setOpenIndex] = useState(-1);
-  const reduceMotion = useReducedMotion();
 
   const items = useMemo(() => {
     if (active === 'all') return portfolioMedia;
@@ -30,11 +30,7 @@ export default function PortfolioGallery() {
             {' · '}
             {portfolioMedia.filter((item) => item.type === 'video').length} films
           </p>
-          <div
-            className="flex flex-wrap gap-2"
-            role="group"
-            aria-label="Filter portfolio"
-          >
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter portfolio">
             {filters.map((category) => (
               <button
                 key={category.id}
@@ -56,55 +52,51 @@ export default function PortfolioGallery() {
           </div>
         </div>
 
-        <motion.div layout className="mt-8 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
-          <AnimatePresence mode="popLayout" initial={false}>
-            {items.map((item, index) => (
-              <motion.button
-                key={item.id}
-                type="button"
-                layout
-                initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.97 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: reduceMotion ? 1 : 0.97 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                onClick={() => setOpenIndex(index)}
-                className="group relative aspect-[4/5] overflow-hidden bg-cream-200 text-left"
-                aria-label={
-                  item.type === 'video'
-                    ? `Play film: ${item.alt}`
-                    : `Open image: ${item.alt}`
-                }
-              >
-                <Image
-                  src={item.type === 'video' ? item.poster : item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(min-width: 1280px) 24vw, (min-width: 768px) 33vw, 50vw"
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                />
-                <span className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/15" />
+        {/* Columns keep every photograph and film at its own full ratio. */}
+        <div className="mt-8 columns-2 gap-3 sm:gap-4 md:columns-3 xl:columns-4">
+          {items.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setOpenIndex(index)}
+              className="group relative mb-3 block w-full break-inside-avoid overflow-hidden bg-cream-200 text-left sm:mb-4"
+              style={{ aspectRatio: `${item.width} / ${item.height}` }}
+              aria-label={
+                item.type === 'video' ? `Play film: ${item.alt}` : `Open image: ${item.alt}`
+              }
+            >
+              <Image
+                src={item.type === 'video' ? item.poster : item.src}
+                alt={item.alt}
+                fill
+                sizes="(min-width: 1280px) 23vw, (min-width: 768px) 31vw, 46vw"
+                quality={70}
+                loading={index < 4 ? 'eager' : 'lazy'}
+                fetchPriority={index === 0 ? 'high' : undefined}
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+              <span className="absolute inset-0 bg-ink/0 transition-colors duration-500 group-hover:bg-ink/15" />
 
-                {item.type === 'video' ? (
-                  <>
-                    <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cream-50/60 bg-ink/35 text-cream-50 backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 sm:h-14 sm:w-14">
-                      <Play size={18} strokeWidth={1.5} className="ml-0.5" fill="currentColor" />
-                    </span>
-                    <span className="absolute right-3 top-3 border border-cream-50/40 bg-ink/40 px-2 py-1 text-[8px] uppercase tracking-label text-cream-50 backdrop-blur-sm">
-                      {item.duration || 'Film'}
-                    </span>
-                  </>
-                ) : null}
-
-                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-ink/60 to-transparent px-3 pb-3 pt-10 text-[9px] uppercase tracking-label text-cream-50">
-                  {item.categoryLabel}
-                  <span className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    {item.type === 'video' ? 'Play' : 'View'}
+              {item.type === 'video' ? (
+                <>
+                  <span className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-cream-50/60 bg-ink/35 text-cream-50 backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 sm:h-14 sm:w-14">
+                    <Play size={18} strokeWidth={1.5} className="ml-0.5" fill="currentColor" />
                   </span>
+                  <span className="absolute right-3 top-3 border border-cream-50/40 bg-ink/40 px-2 py-1 text-[8px] uppercase tracking-label text-cream-50 backdrop-blur-sm">
+                    {item.duration || 'Film'}
+                  </span>
+                </>
+              ) : null}
+
+              <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 bg-gradient-to-t from-ink/60 to-transparent px-3 pb-3 pt-10 text-[9px] uppercase tracking-label text-cream-50">
+                {item.categoryLabel}
+                <span className="opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {item.type === 'video' ? 'Play' : 'View'}
                 </span>
-              </motion.button>
-            ))}
-          </AnimatePresence>
-        </motion.div>
+              </span>
+            </button>
+          ))}
+        </div>
 
         <p className="mt-6 text-[10px] uppercase tracking-label text-ink-muted">
           Films are loaded only when you press play.
