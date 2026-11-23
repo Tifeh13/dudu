@@ -267,24 +267,53 @@ export default function BookingSection() {
       case 'service':
         return (
           <div>
-            <label htmlFor="booking-service" className="field-label">
-              Service
-            </label>
-            <select
+            <fieldset
               id="booking-service"
-              className="field"
-              value={values.serviceId}
-              onChange={(event) => handleService(event.target.value)}
               aria-invalid={Boolean(errors.serviceId)}
               aria-describedby={errors.serviceId ? 'error-serviceId' : undefined}
+              tabIndex={-1}
             >
-              <option value="">Select a service</option>
-              {services.map((service) => (
-                <option key={service.id} value={service.id}>
-                  {service.name} — {service.quoteOnly ? 'price on request' : service.durationLabel}
-                </option>
-              ))}
-            </select>
+              <legend className="field-label">Service</legend>
+              <div
+                className={`divide-y divide-line border bg-cream-50 ${
+                  errors.serviceId ? 'border-[#8f3a2f]/60' : 'border-line'
+                }`}
+              >
+                {services.map((service) => {
+                  const selected = values.serviceId === service.id;
+                  return (
+                    <label
+                      key={service.id}
+                      className={`flex cursor-pointer items-center justify-between gap-3 px-4 py-3.5 transition-colors duration-200 focus-within:border-l-2 focus-within:border-l-ink sm:px-5 ${
+                        selected
+                          ? 'bg-ink text-cream-50'
+                          : 'text-ink-soft hover:bg-cream-100 hover:text-ink'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="booking-service"
+                        value={service.id}
+                        checked={selected}
+                        onChange={() => handleService(service.id)}
+                        className="sr-only"
+                      />
+                      <span className="font-serif text-base leading-snug sm:text-lg">
+                        {service.name}
+                      </span>
+                      <span
+                        className={`flex shrink-0 items-center gap-2 text-[9px] uppercase tracking-label ${
+                          selected ? 'text-cream-50/75' : 'text-ink-muted'
+                        }`}
+                      >
+                        {service.quoteOnly ? 'Price on request' : service.durationLabel}
+                        {selected && <Check size={13} strokeWidth={2} />}
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
             <FieldError id="error-serviceId" message={errors.serviceId} />
             {totals.service?.quoteOnly && (
               <p className="mt-3 border-l border-accent/50 pl-3 text-xs leading-relaxed text-ink-muted">

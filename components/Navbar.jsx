@@ -38,7 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      <SkipLink />
+      {pathname !== '/' ? <SkipLink /> : null}
 
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ${
