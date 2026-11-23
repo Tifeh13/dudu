@@ -3,9 +3,12 @@
 import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
-import { contact, pricing } from '@/data/siteData';
+import { contact, fees, pricing } from '@/data/siteData';
 import { formatNaira } from '@/lib/formatNaira';
 import Reveal from './Reveal';
+
+const [earlyHour, earlyMinute] = fees.earlyMorning.before.split(':');
+const earlyMorningLabel = `${Number(earlyHour)}:${earlyMinute} AM`;
 
 const tabs = [
   { id: 'island', label: 'Island', meta: 'Lagos Island · Ikoyi · VI' },
@@ -107,6 +110,37 @@ export default function PricingTabs() {
             <div className="border-l border-line pl-4">
               <p className="text-[10px] uppercase tracking-label text-ink">Outside these areas</p>
               <p className="mt-1 text-sm text-ink-soft">{pricing.outsideAreaNote}</p>
+            </div>
+
+            <div className="border-l border-line pl-4">
+              <p className="text-[10px] uppercase tracking-label text-ink">Additional fees</p>
+              <dl className="mt-2 space-y-2 text-sm text-ink-soft">
+                <div className="flex items-baseline justify-between gap-3">
+                  <dt>
+                    Early morning
+                    <span className="ml-1 text-xs text-ink-muted">
+                      (before {earlyMorningLabel})
+                    </span>
+                  </dt>
+                  <dd className="shrink-0 font-serif text-base text-ink">
+                    {formatNaira(fees.earlyMorning.amount)}
+                  </dd>
+                </div>
+                <div className="flex items-baseline justify-between gap-3">
+                  <dt>
+                    Express / last-minute
+                    <span className="ml-1 text-xs text-ink-muted">
+                      (under {fees.express.windowHours} hours)
+                    </span>
+                  </dt>
+                  <dd className="shrink-0 font-serif text-base text-ink">
+                    {formatNaira(fees.express.amount)}
+                  </dd>
+                </div>
+              </dl>
+              <p className="mt-2 text-xs text-ink-muted">
+                Added automatically to your booking estimate when they apply.
+              </p>
             </div>
 
             <div className="border-t border-line pt-4 text-xs leading-relaxed text-ink-muted">
