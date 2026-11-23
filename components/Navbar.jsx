@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import { brand, contact, navLinks } from '@/data/siteData';
-import BrandLockup from './BrandLockup';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -55,17 +55,24 @@ export default function Navbar() {
             : 'border-transparent bg-cream/60 backdrop-blur-[2px]'
         }`}
       >
-        <div className="shell flex h-[72px] items-center justify-between gap-6 lg:h-[84px]">
+        <div className="shell flex h-[72px] items-center justify-between lg:h-[84px]">
           <Link
             href={pathname === '/' ? '#home' : '/#home'}
-            className="flex items-center"
+            className="flex shrink-0 items-center"
             aria-label={`${brand.name} — home`}
             onClick={() => setOpen(false)}
           >
-            <BrandLockup />
+            <Image
+              src={brand.logoWordmark}
+              alt={brand.name}
+              width={896}
+              height={51}
+              priority
+              className="h-[11px] w-auto shrink-0 sm:h-4 lg:h-[18px]"
+            />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+          <nav aria-label="Primary" className="hidden items-center gap-4 lg:flex xl:gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}

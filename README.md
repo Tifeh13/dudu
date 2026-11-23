@@ -44,13 +44,13 @@ public/media/   portfolio films (MP4)
 
 ## Replace the logo
 
-The header and footer use a compact lockup: the monogram plus a typographic
-wordmark. Replace these files to rebrand:
+The navbar uses a wordmark cropped from your supplied logo; the footer shows the
+full logo. Replace these files to rebrand:
 
 | File | Purpose | Size |
 | --- | --- | --- |
-| `public/images/brand/logo.png` | Full logo (social sharing / print) | 1000 × 1032 |
-| `public/images/brand/logo-mark.png` | Monogram used in header and footer | 800 × 800, transparent |
+| `public/images/brand/logo.png` | Full logo (footer, social sharing) | 1000 × 1032 |
+| `public/images/brand/logo-wordmark.png` | Wordmark used in the navbar | 896 × 51, transparent |
 | `app/icon.png` | App icon | 512 × 512 |
 | `app/apple-icon.png` | iOS icon | 180 × 180 |
 | `app/favicon.ico` | Browser favicon (16, 32, 48) | multi-size ICO |

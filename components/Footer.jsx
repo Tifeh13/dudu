@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import { brand, contact, navLinks, pricing } from '@/data/siteData';
-import BrandLockup from './BrandLockup';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -9,8 +9,14 @@ export default function Footer() {
       <div className="shell py-14 lg:py-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.6fr_0.8fr]">
           <div>
-            <a href="#home" aria-label={`${brand.name} — back to top`}>
-              <BrandLockup size="lg" />
+            <a href="/#home" aria-label={`${brand.name} — back to top`}>
+              <Image
+                src={brand.logo}
+                alt={`${brand.name} logo`}
+                width={1000}
+                height={1032}
+                className="h-24 w-auto sm:h-28"
+              />
             </a>
             <p className="mt-5 max-w-xs font-serif text-lg font-light italic text-ink-soft">
               {brand.tagline}

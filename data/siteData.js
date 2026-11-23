@@ -14,7 +14,8 @@ export const brand = {
   shortName: 'Duduyemi',
   initials: 'DM',
   logo: '/images/brand/logo.png',
-  logoMark: '/images/brand/logo-mark.png',
+  // Wordmark cropped from the supplied logo, used in the navigation bar.
+  logoWordmark: '/images/brand/logo-wordmark.png',
   // PLACEHOLDER (tagline): three options supplied below — the strongest is in use.
   tagline: 'Beauty, made personal.',
   taglineOptions: [
