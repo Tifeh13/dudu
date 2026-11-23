@@ -56,6 +56,10 @@ The header and footer both show your supplied logo. Replace this file to rebrand
 | `public/images/brand/manifest-192.png` | Web manifest icon | 192 × 192 |
 | `public/images/brand/manifest-512.png` | Web manifest icon | 512 × 512 |
 
+The icon files are a cream “DM” monogram on ink, drawn from the logo's letters so
+the mark stays legible at 16px in a browser tab. Regenerate them together if the
+brand letters change — the favicon needs the 16, 32 and 48px frames.
+
 `public/images/og/og-image.jpg` is the 1200 × 630 social preview.
 
 ## Replace portfolio photographs
