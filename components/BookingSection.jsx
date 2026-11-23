@@ -92,6 +92,43 @@ function readSavedValues() {
   }
 }
 
+function formatClock(time) {
+  if (!time || typeof time !== 'string') return time;
+  const [hourText, minute = '00'] = time.split(':');
+  const hour = Number(hourText);
+  if (Number.isNaN(hour)) return time;
+  const suffix = hour >= 12 ? 'PM' : 'AM';
+  const display = hour % 12 === 0 ? 12 : hour % 12;
+  return `${display}:${minute} ${suffix}`;
+}
+
+function FeeRow({ active, title, condition, amount }) {
+  return (
+    <li
+      className={`flex items-start justify-between gap-3 px-3.5 py-3 transition-colors duration-300 ${
+        active ? 'bg-cream-100' : ''
+      }`}
+    >
+      <div className="min-w-0">
+        <p className={`text-xs ${active ? 'text-ink' : 'text-ink-soft'}`}>{title}</p>
+        <p className="mt-0.5 text-[9px] uppercase tracking-label text-ink-muted">
+          {condition}
+        </p>
+      </div>
+      <div className="flex shrink-0 items-center gap-2">
+        <span className="font-serif text-sm text-ink">+{formatNaira(amount)}</span>
+        <span
+          className={`text-[8px] uppercase tracking-label ${
+            active ? 'text-accent' : 'text-ink-muted/70'
+          }`}
+        >
+          {active ? 'Added' : 'Not applied'}
+        </span>
+      </div>
+    </li>
+  );
+}
+
 function FieldError({ id, message }) {
   if (!message) return null;
   return (
@@ -495,34 +532,46 @@ export default function BookingSection() {
               </div>
             </div>
 
-            <div className="mt-5 space-y-2">
-              {isEarlyMorning(values.time) && (
-                <div className="flex flex-wrap items-center gap-2 border border-accent/40 bg-cream-50 px-3 py-2.5 text-xs text-ink-soft">
-                  <span>
-                    Early morning fee {formatNaira(fees.earlyMorning.amount)} applies before{' '}
-                    {fees.earlyMorning.before}.
-                  </span>
-                  <span className="text-[8px] uppercase tracking-label text-accent">
-                    Confirm with artist
-                  </span>
-                </div>
-              )}
-              {isExpress(values.date, values.time) && (
-                <div className="flex flex-wrap items-center gap-2 border border-accent/40 bg-cream-50 px-3 py-2.5 text-xs text-ink-soft">
-                  <span>
-                    Express booking fee {formatNaira(fees.express.amount)} applies under{' '}
-                    {fees.express.windowHours} hours.
-                  </span>
-                  <span className="text-[8px] uppercase tracking-label text-accent">
-                    Confirm with artist
-                  </span>
-                </div>
-              )}
-              <p className="text-xs leading-relaxed text-ink-muted">
-                Appointments begin at the time you choose. Home-service arrival is
-                planned with you beforehand.
+            <div className="mt-5 border border-line bg-cream-50">
+              <p className="border-b border-line px-3.5 py-2.5 text-[9px] uppercase tracking-label text-ink-muted">
+                Fees for the time you choose
+              </p>
+              <ul className="divide-y divide-line">
+                <FeeRow
+                  active={isEarlyMorning(values.time)}
+                  title="Early morning start"
+                  condition={`Before ${formatClock(fees.earlyMorning.before)}`}
+                  amount={fees.earlyMorning.amount}
+                />
+                <FeeRow
+                  active={isExpress(values.date, values.time)}
+                  title="Express / last-minute booking"
+                  condition={`Within ${fees.express.windowHours} hours of booking`}
+                  amount={fees.express.amount}
+                />
+              </ul>
+              <p className="border-t border-line px-3.5 py-2.5 text-xs leading-relaxed text-ink-soft">
+                {isEarlyMorning(values.time) || isExpress(values.date, values.time) ? (
+                  <>
+                    <span className="text-ink">
+                      {formatNaira(
+                        (isEarlyMorning(values.time) ? fees.earlyMorning.amount : 0) +
+                          (isExpress(values.date, values.time) ? fees.express.amount : 0)
+                      )}{' '}
+                      added
+                    </span>{' '}
+                    to your total because of this time. It appears in your estimate
+                    and the WhatsApp request.
+                  </>
+                ) : (
+                  'No time-based fee applies to the time you have chosen.'
+                )}
               </p>
             </div>
+            <p className="mt-3 text-xs leading-relaxed text-ink-muted">
+              Appointments begin at the time you choose. Home-service arrival is
+              planned with you beforehand.
+            </p>
           </div>
         );
 
