@@ -33,7 +33,7 @@ export default function About() {
                 />
               </div>
               <figcaption className="mt-3 text-[9px] uppercase tracking-label text-ink-muted">
-                Duduyemi — Creative Director
+                Duduyemi — Founder &amp; Creative Director
               </figcaption>
             </figure>
 

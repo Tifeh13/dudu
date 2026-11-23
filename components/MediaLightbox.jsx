@@ -128,7 +128,7 @@ export default function MediaLightbox({ items, index, onClose, onChange }) {
                 autoPlay
                 playsInline
                 preload="metadata"
-                className="h-full w-full object-contain"
+                className="h-auto max-h-full w-auto max-w-full object-contain"
               >
                 Your browser does not support the video tag.
               </video>
