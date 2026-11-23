@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
+import { focusFirstField } from '@/lib/focusFirstField';
 
 /**
  * Next's client-side navigation can drop the hash target while images and
@@ -24,7 +25,13 @@ export default function HashScroll() {
       const header = document.querySelector('header');
       const offset = (header?.offsetHeight || 72) + 8;
       const top = element.getBoundingClientRect().top + window.scrollY - offset;
-      window.scrollTo({ top, behavior: 'auto' });
+      // 'instant' ignores the global smooth-scroll rule so the jump is immediate.
+      window.scrollTo({ top, behavior: 'instant' });
+
+      if (window.sessionStorage.getItem('duduyemi:focus-booking') === '1') {
+        window.sessionStorage.removeItem('duduyemi:focus-booking');
+        focusFirstField(element);
+      }
     };
 
     const timers = [0, 120, 350, 700, 1200].map((delay) => setTimeout(jump, delay));

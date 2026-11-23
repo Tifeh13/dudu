@@ -7,6 +7,7 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { brand, contact, navLinks } from '@/data/siteData';
 import SiteLink from './SiteLink';
+import SkipLink from './SkipLink';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,12 +38,7 @@ export default function Navbar() {
 
   return (
     <>
-      <a
-        href="#booking"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[80] focus:bg-ink focus:px-5 focus:py-3 focus:text-[10px] focus:uppercase focus:tracking-label focus:text-cream-50"
-      >
-        Skip to booking
-      </a>
+      <SkipLink />
 
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ${
