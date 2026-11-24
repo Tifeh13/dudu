@@ -327,10 +327,11 @@ export const pricing = {
  * FEES — thresholds and amounts are configurable here.
  * ------------------------------------------------------------------------- */
 export const fees = {
-  // Early morning fee: appointments starting between 8:00 AM and 8:59 AM.
-  // Express fee: appointments starting from 9:00 PM, or booked less than
-  // 24 hours ahead. `windowLabel` is the human-readable version used across
-  // the site (keep it in step with the thresholds).
+  // Two separate time-based fees:
+  //  - early morning: starts between 8:00 AM and 8:59 AM (₦5,000)
+  //  - express: starts from 9:00 PM onwards (₦10,000)
+  // `windowLabel` is the human-readable version used across the site (keep it
+  // in step with the thresholds).
   earlyMorning: {
     amount: 5000,
     from: '08:00',
@@ -344,11 +345,9 @@ export const fees = {
     amount: 10000,
     from: '21:00',
     startLabel: '9:00 PM',
-    windowHours: 24,
-    windowLabel: 'From 9:00 PM, or within 24 hours of booking',
+    windowLabel: 'From 9:00 PM onwards',
     label: 'Express booking fee',
-    description:
-      'Appointments starting from 9:00 PM, or booked less than 24 hours ahead.',
+    description: 'Appointments starting from 9:00 PM onwards.',
     requiresConfirmation: true, // displays "CONFIRM WITH ARTIST"
   },
 };
@@ -375,7 +374,7 @@ export const policies = [
   {
     id: 'express',
     title: 'Express bookings',
-    body: `Appointments starting from ${fees.express.startLabel}, or booked less than ${fees.express.windowHours} hours before the appointment, attract a ₦${fees.express.amount.toLocaleString('en-NG')} express fee.`,
+    body: `Appointments starting from ${fees.express.startLabel} onwards attract a ₦${fees.express.amount.toLocaleString('en-NG')} express fee.`,
     confirm: 'CONFIRM WITH ARTIST',
   },
   {
@@ -688,7 +687,7 @@ export const faqs = [
   },
   {
     q: 'Are there extra fees for early morning or late evening appointments?',
-    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee. Appointments starting from ${fees.express.startLabel} — or booked less than ${fees.express.windowHours} hours ahead — add a ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
+    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee. Appointments starting from ${fees.express.startLabel} onwards add a separate ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
   },
   {
     q: 'How long does makeup take?',
@@ -778,8 +777,8 @@ export const seo = {
  * 3. contact.socials     — Snapchat supplied as a display name only, no URL.
  * 4. pricing.mainland 4  — CONFIRM ₦316,000 (4 × ₦80,000 − ₦24,000 = ₦296,000).
  * 5. fees.earlyMorning   — CONFIRM WITH ARTIST (₦5,000, 8:00–8:59 AM).
- * 6. fees.express        — CONFIRM WITH ARTIST (₦10,000, from 9:00 PM or
- *                          under 24 hours).
+ * 6. fees.express        — CONFIRM WITH ARTIST (₦10,000, from 9:00 PM
+ *                          onwards).
  * 7. policies cancel     — PLACEHOLDER, awaiting artist wording.
  * 8. policies lateness   — PLACEHOLDER, awaiting artist wording.
  * 9. FAQs deposit refund — PLACEHOLDER, awaiting artist wording.

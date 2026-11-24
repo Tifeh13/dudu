@@ -12,7 +12,6 @@ import {
   MessageCircle,
 } from 'lucide-react';
 import {
-  areaById,
   areaGroups,
   bookingSteps,
   fees,
@@ -107,10 +106,10 @@ function readReceipt() {
     const raw = window.localStorage.getItem(RECEIPT_KEY);
     if (!raw) return null;
     const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed !== 'object' || !parsed.values?.date) return null;
-    const appointment = new Date(
-      `${parsed.values.date}T${parsed.values.time || '23:59'}:00`
-    );
+    if (!parsed || typeof parsed !== 'object') return null;
+    // A receipt without its frozen snapshot is incomplete — ignore it.
+    if (!parsed.date || !parsed.message || !parsed.dateLabel) return null;
+    const appointment = new Date(`${parsed.date}T${parsed.time || '23:59'}:00`);
     // Past appointments are no longer a useful status card.
     if (Number.isNaN(appointment.getTime())) return null;
     if (appointment.getTime() < Date.now() - 24 * 60 * 60 * 1000) {
@@ -330,17 +329,33 @@ export default function BookingSection() {
 
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
     setSent(true);
-    const record = { sentAt: new Date().toISOString(), values: { ...values } };
+    // Freeze everything that was sent, so later edits, price changes or
+    // re-visits can never rewrite what the artist received on WhatsApp.
+    const record = {
+      sentAt: new Date().toISOString(),
+      date: values.date,
+      time: values.time,
+      dateLabel: prettyDate(values.date),
+      timeLabel: prettyTime(values.time),
+      serviceName: finalTotals.service?.name || 'Makeup appointment',
+      areaName: finalTotals.area?.name || 'To be confirmed',
+      people: values.people,
+      geleCount: finalTotals.geleCount,
+      total: finalTotals.quoteRequired ? null : finalTotals.total,
+      deposit: finalTotals.quoteRequired ? null : finalTotals.deposit,
+      depositPercentage: finalTotals.depositPercentage,
+      message,
+    };
     writeReceipt(record);
     setReceipt(record);
     window.setTimeout(() => setSubmitting(false), 1400);
   };
 
   const reopenWhatsApp = () => {
-    if (!receipt) return;
-    const savedTotals = calculateTotal(receipt.values);
+    if (!receipt?.message) return;
+    // The exact message that was sent, not a fresh calculation.
     window.open(
-      buildWhatsAppUrl(buildWhatsAppMessage(receipt.values, savedTotals)),
+      buildWhatsAppUrl(receipt.message),
       '_blank',
       'noopener,noreferrer'
     );
@@ -361,8 +376,6 @@ export default function BookingSection() {
     setRestored(false);
   };
 
-  const receiptService = receipt ? serviceById(receipt.values.serviceId) : null;
-  const receiptArea = receipt ? areaById(receipt.values.areaId) : null;
   const maxGele = Math.min(Number(values.people) || 1, 5);
   const progress = ((step + 1) / bookingSteps.length) * 100;
   const activeError = Object.values(errors)[0];
@@ -565,7 +578,7 @@ export default function BookingSection() {
 
       case 'date': {
         const earlyMorning = isEarlyMorning(values.time);
-        const express = isExpress(values.date, values.time);
+        const express = isExpress(values.time);
         return (
           <div>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -789,8 +802,7 @@ export default function BookingSection() {
                         Service
                       </dt>
                       <dd className="mt-1">
-                        {receiptService?.name || 'Makeup appointment'}
-                        {receiptArea ? ` · ${receiptArea.name}` : ''}
+                        {receipt.serviceName} · {receipt.areaName}
                       </dd>
                     </div>
                     <div>
@@ -798,15 +810,27 @@ export default function BookingSection() {
                         Appointment
                       </dt>
                       <dd className="mt-1">
-                        {prettyDate(receipt.values.date)}
-                        {receipt.values.time ? `, ${prettyTime(receipt.values.time)}` : ''}
+                        {receipt.dateLabel}
+                        {receipt.timeLabel ? `, ${receipt.timeLabel}` : ''}
                       </dd>
                     </div>
+                    {receipt.total !== null && (
+                      <div>
+                        <dt className="text-[8px] uppercase tracking-label text-cream-50/60">
+                          Estimate at the time
+                        </dt>
+                        <dd className="mt-1">
+                          {formatNaira(receipt.total)} · deposit{' '}
+                          {formatNaira(receipt.deposit)}
+                        </dd>
+                      </div>
+                    )}
                   </dl>
                   <p className="mt-4 text-xs leading-relaxed text-cream-50/75">
                     Sent {prettyDate(receipt.sentAt.slice(0, 10))} from this device.
-                    Duduyemi replies on WhatsApp, and your date is secured once the{' '}
-                    {pricing.depositPercentage}% deposit has been received — so keep
+                    These details are fixed at the moment you sent them. Duduyemi
+                    replies on WhatsApp, and your date is secured once the{' '}
+                    {receipt.depositPercentage}% deposit has been received — so keep
                     the message thread open until she confirms.
                   </p>
                   <div className="mt-5 flex flex-wrap items-center gap-4">

@@ -95,8 +95,8 @@ Everything lives in `pricing` in `data/siteData.js`:
 - `depositPercentage` controls the deposit shown in the summary and messages.
 - `fees.earlyMorning` and `fees.express` hold the amounts and thresholds.
   The early morning fee applies to starts between 8:00 and 8:59 AM; the express
-  fee applies to starts from 9:00 PM or to bookings under 24 hours away.
-  `windowLabel` is the text shown across the site.
+  fee applies separately to starts from 9:00 PM onwards. `windowLabel` is the
+  text shown across the site.
 
 **CONFIRM:** Mainland 4 people is stored as ₦340,000 − ₦24,000 = ₦316,000 because
 that is the published total, but 4 × ₦80,000 − ₦24,000 = ₦296,000. Update the
@@ -133,8 +133,8 @@ derived from the supplied display name (`baddestmakeupartist`) — replace
 4. **Mainland group of 4** — CONFIRM ₦316,000 vs ₦296,000.
 5. **Early morning fee** — ₦5,000 for starts between 8:00 and 8:59 AM,
    labelled CONFIRM WITH ARTIST.
-6. **Express fee** — ₦10,000 for starts from 9:00 PM or bookings under 24
-   hours, labelled CONFIRM WITH ARTIST.
+6. **Express fee** — ₦10,000 for starts from 9:00 PM onwards, labelled CONFIRM
+   WITH ARTIST.
 7. **Cancellation policy** — awaiting artist wording (FAQ also flags this).
 8. **Lateness policy** — awaiting artist wording.
 9. **Deposit refund policy** — awaiting artist wording.
