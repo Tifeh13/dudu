@@ -7,10 +7,12 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  CheckCircle2,
   Loader2,
   MessageCircle,
 } from 'lucide-react';
 import {
+  areaById,
   areaGroups,
   bookingSteps,
   fees,
@@ -21,13 +23,21 @@ import {
   services,
 } from '@/data/siteData';
 import { calculateTotal, isEarlyMorning, isExpress } from '@/lib/calculateTotal';
-import { buildWhatsAppMessage, buildWhatsAppUrl } from '@/lib/buildWhatsAppMessage';
+import {
+  buildWhatsAppMessage,
+  buildWhatsAppUrl,
+  prettyDate,
+  prettyTime,
+} from '@/lib/buildWhatsAppMessage';
 import { formatNaira } from '@/lib/formatNaira';
 import { todayISO, validateAll, validateStep } from '@/lib/validation';
 import BookingSummary from './BookingSummary';
 import Reveal from './Reveal';
 
 const STORAGE_KEY = 'duduyemi-booking-v1';
+// Saved after a request has been handed to WhatsApp, so a returning visitor sees
+// where their booking stands instead of an empty form.
+const RECEIPT_KEY = 'duduyemi-booking-receipt-v1';
 
 const initialValues = {
   serviceId: '',
@@ -92,6 +102,43 @@ function readSavedValues() {
   }
 }
 
+function readReceipt() {
+  try {
+    const raw = window.localStorage.getItem(RECEIPT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || !parsed.values?.date) return null;
+    const appointment = new Date(
+      `${parsed.values.date}T${parsed.values.time || '23:59'}:00`
+    );
+    // Past appointments are no longer a useful status card.
+    if (Number.isNaN(appointment.getTime())) return null;
+    if (appointment.getTime() < Date.now() - 24 * 60 * 60 * 1000) {
+      window.localStorage.removeItem(RECEIPT_KEY);
+      return null;
+    }
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function writeReceipt(record) {
+  try {
+    window.localStorage.setItem(RECEIPT_KEY, JSON.stringify(record));
+  } catch {
+    /* Storage may be blocked; the status card is a convenience only. */
+  }
+}
+
+function removeReceipt() {
+  try {
+    window.localStorage.removeItem(RECEIPT_KEY);
+  } catch {
+    /* ignore */
+  }
+}
+
 function FeeRow({ active, title, condition, amount }) {
   return (
     <li
@@ -136,6 +183,7 @@ export default function BookingSection() {
   const [restored, setRestored] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [receipt, setReceipt] = useState(null);
   const formRef = useRef(null);
   const reduceMotion = useReducedMotion();
 
@@ -151,6 +199,7 @@ export default function BookingSection() {
       setValues(saved);
       setRestored(true);
     }
+    setReceipt(readReceipt());
     setHydrated(true);
   }, []);
 
@@ -281,9 +330,39 @@ export default function BookingSection() {
 
     window.open(buildWhatsAppUrl(message), '_blank', 'noopener,noreferrer');
     setSent(true);
+    const record = { sentAt: new Date().toISOString(), values: { ...values } };
+    writeReceipt(record);
+    setReceipt(record);
     window.setTimeout(() => setSubmitting(false), 1400);
   };
 
+  const reopenWhatsApp = () => {
+    if (!receipt) return;
+    const savedTotals = calculateTotal(receipt.values);
+    window.open(
+      buildWhatsAppUrl(buildWhatsAppMessage(receipt.values, savedTotals)),
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
+  const startNewRequest = () => {
+    removeReceipt();
+    try {
+      window.localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      /* ignore */
+    }
+    setReceipt(null);
+    setValues(initialValues);
+    setStep(0);
+    setErrors({});
+    setSent(false);
+    setRestored(false);
+  };
+
+  const receiptService = receipt ? serviceById(receipt.values.serviceId) : null;
+  const receiptArea = receipt ? areaById(receipt.values.areaId) : null;
   const maxGele = Math.min(Number(values.people) || 1, 5);
   const progress = ((step + 1) / bookingSteps.length) * 100;
   const activeError = Object.values(errors)[0];
@@ -690,6 +769,65 @@ export default function BookingSection() {
 
         <div className="mt-10 grid items-start gap-8 lg:grid-cols-[1.4fr_0.85fr] lg:gap-10">
           <Reveal className="min-w-0">
+            {receipt && (
+              <div className="mb-4 bg-ink text-cream-50">
+                <div className="px-5 py-5 sm:px-8">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <p className="flex items-center gap-2 text-[9px] uppercase tracking-label text-cream-50/70">
+                      <CheckCircle2 size={13} strokeWidth={1.6} /> Request sent
+                    </p>
+                    <span className="border border-cream-50/30 px-2 py-1 text-[8px] uppercase tracking-label text-cream-50/80">
+                      Awaiting confirmation
+                    </span>
+                  </div>
+                  <p className="mt-3 font-serif text-2xl font-light">
+                    Your request is with Duduyemi.
+                  </p>
+                  <dl className="mt-4 grid gap-3 text-xs sm:grid-cols-2">
+                    <div>
+                      <dt className="text-[8px] uppercase tracking-label text-cream-50/60">
+                        Service
+                      </dt>
+                      <dd className="mt-1">
+                        {receiptService?.name || 'Makeup appointment'}
+                        {receiptArea ? ` · ${receiptArea.name}` : ''}
+                      </dd>
+                    </div>
+                    <div>
+                      <dt className="text-[8px] uppercase tracking-label text-cream-50/60">
+                        Appointment
+                      </dt>
+                      <dd className="mt-1">
+                        {prettyDate(receipt.values.date)}
+                        {receipt.values.time ? `, ${prettyTime(receipt.values.time)}` : ''}
+                      </dd>
+                    </div>
+                  </dl>
+                  <p className="mt-4 text-xs leading-relaxed text-cream-50/75">
+                    Sent {prettyDate(receipt.sentAt.slice(0, 10))} from this device.
+                    Duduyemi replies on WhatsApp, and your date is secured once the{' '}
+                    {pricing.depositPercentage}% deposit has been received — so keep
+                    the message thread open until she confirms.
+                  </p>
+                  <div className="mt-5 flex flex-wrap items-center gap-4">
+                    <button
+                      type="button"
+                      onClick={reopenWhatsApp}
+                      className="inline-flex items-center gap-2 border border-cream-50/40 px-4 py-2.5 text-[9px] uppercase tracking-label transition-colors hover:bg-cream-50 hover:text-ink"
+                    >
+                      <MessageCircle size={13} strokeWidth={1.6} /> Reopen WhatsApp
+                    </button>
+                    <button
+                      type="button"
+                      onClick={startNewRequest}
+                      className="text-[9px] uppercase tracking-label text-cream-50/70 underline-offset-4 transition-colors hover:text-cream-50 hover:underline"
+                    >
+                      Start a new request
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
             <form
               ref={formRef}
               onSubmit={handleSubmit}
