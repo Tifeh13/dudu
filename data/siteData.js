@@ -327,26 +327,27 @@ export const pricing = {
  * FEES — thresholds and amounts are configurable here.
  * ------------------------------------------------------------------------- */
 export const fees = {
-  // Out-of-hours fee: appointments starting between 7:00 AM and 8:59 AM, or
-  // from 9:00 PM onwards. `from`/`before`/`lateFrom` drive the calculation;
-  // `windowLabel` is the human-readable version used across the site (keep the
-  // two in step when changing the windows).
+  // Early morning fee: appointments starting between 8:00 AM and 8:59 AM.
+  // Express fee: appointments starting from 9:00 PM, or booked less than
+  // 24 hours ahead. `windowLabel` is the human-readable version used across
+  // the site (keep it in step with the thresholds).
   earlyMorning: {
     amount: 5000,
-    from: '07:00',
+    from: '08:00',
     before: '09:00',
-    lateFrom: '21:00',
-    windowLabel: 'between 7:00 and 8:59 AM, or from 9:00 PM',
-    label: 'Early morning / late evening fee',
-    description:
-      'Appointments starting between 7:00 AM and 8:59 AM, or from 9:00 PM onwards.',
+    windowLabel: '8:00–8:59 AM',
+    label: 'Early morning fee',
+    description: 'Appointments starting between 8:00 and 8:59 AM.',
     requiresConfirmation: true, // displays "CONFIRM WITH ARTIST"
   },
   express: {
     amount: 10000,
+    from: '21:00',
     windowHours: 24,
+    windowLabel: 'From 9:00 PM, or within 24 hours of booking',
     label: 'Express booking fee',
-    description: 'Bookings made less than 24 hours before the appointment.',
+    description:
+      'Appointments starting from 9:00 PM, or booked less than 24 hours ahead.',
     requiresConfirmation: true, // displays "CONFIRM WITH ARTIST"
   },
 };
@@ -365,13 +366,15 @@ export const policies = [
   {
     id: 'early-morning',
     title: 'Early morning appointments',
-    body: `Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning / late evening fee.`,
+    body: `Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee.`,
+    // NOTE: windowLabel reads "8:00–8:59 AM", so the sentence above stays
+    // grammatical without a leading "between".
     confirm: 'CONFIRM WITH ARTIST',
   },
   {
     id: 'express',
     title: 'Express bookings',
-    body: `Bookings made less than ${fees.express.windowHours} hours before the appointment attract a ₦${fees.express.amount.toLocaleString('en-NG')} express fee.`,
+    body: `Appointments starting from ${fees.express.from.replace(':00', '')} PM, or booked less than ${fees.express.windowHours} hours before the appointment, attract a ₦${fees.express.amount.toLocaleString('en-NG')} express fee.`,
     confirm: 'CONFIRM WITH ARTIST',
   },
   {
@@ -684,7 +687,7 @@ export const faqs = [
   },
   {
     q: 'Are there extra fees for early morning or late evening appointments?',
-    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning / late evening fee. Bookings made less than ${fees.express.windowHours} hours before the appointment add a ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
+    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee. Appointments starting from 9:00 PM — or booked less than ${fees.express.windowHours} hours ahead — add a ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
   },
   {
     q: 'How long does makeup take?',
@@ -773,9 +776,9 @@ export const seo = {
  * 2. brand.shortBio/bio  — drafted copy; artist should review and personalise.
  * 3. contact.socials     — Snapchat supplied as a display name only, no URL.
  * 4. pricing.mainland 4  — CONFIRM ₦316,000 (4 × ₦80,000 − ₦24,000 = ₦296,000).
- * 5. fees.earlyMorning   — CONFIRM WITH ARTIST (₦5,000 between 7:00 and
- *                          8:59 AM, or from 9:00 PM).
- * 6. fees.express        — CONFIRM WITH ARTIST (₦10,000 under 24 hours).
+ * 5. fees.earlyMorning   — CONFIRM WITH ARTIST (₦5,000, 8:00–8:59 AM).
+ * 6. fees.express        — CONFIRM WITH ARTIST (₦10,000, from 9:00 PM or
+ *                          under 24 hours).
  * 7. policies cancel     — PLACEHOLDER, awaiting artist wording.
  * 8. policies lateness   — PLACEHOLDER, awaiting artist wording.
  * 9. FAQs deposit refund — PLACEHOLDER, awaiting artist wording.

@@ -20,7 +20,7 @@ import {
   serviceById,
   services,
 } from '@/data/siteData';
-import { calculateTotal, isExpress, isOffHours } from '@/lib/calculateTotal';
+import { calculateTotal, isEarlyMorning, isExpress } from '@/lib/calculateTotal';
 import { buildWhatsAppMessage, buildWhatsAppUrl } from '@/lib/buildWhatsAppMessage';
 import { formatNaira } from '@/lib/formatNaira';
 import { todayISO, validateAll, validateStep } from '@/lib/validation';
@@ -485,7 +485,7 @@ export default function BookingSection() {
         );
 
       case 'date': {
-        const offHours = isOffHours(values.time);
+        const earlyMorning = isEarlyMorning(values.time);
         const express = isExpress(values.date, values.time);
         return (
           <div>
@@ -530,24 +530,24 @@ export default function BookingSection() {
               </p>
               <ul className="divide-y divide-line">
                 <FeeRow
-                  active={offHours}
-                  title="Early morning / late evening"
+                  active={earlyMorning}
+                  title="Early morning start"
                   condition={fees.earlyMorning.windowLabel}
                   amount={fees.earlyMorning.amount}
                 />
                 <FeeRow
                   active={express}
-                  title="Express / last-minute booking"
-                  condition={`Within ${fees.express.windowHours} hours of booking`}
+                  title="Express booking"
+                  condition={fees.express.windowLabel}
                   amount={fees.express.amount}
                 />
               </ul>
               <p className="border-t border-line px-3.5 py-2.5 text-xs leading-relaxed text-ink-soft">
-                {offHours || express ? (
+                {earlyMorning || express ? (
                   <>
                     <span className="text-ink">
                       {formatNaira(
-                        (offHours ? fees.earlyMorning.amount : 0) +
+                        (earlyMorning ? fees.earlyMorning.amount : 0) +
                           (express ? fees.express.amount : 0)
                       )}{' '}
                       added

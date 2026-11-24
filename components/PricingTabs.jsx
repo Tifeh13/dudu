@@ -114,7 +114,7 @@ export default function PricingTabs() {
               <dl className="mt-2 space-y-2 text-sm text-ink-soft">
                 <div className="flex items-baseline justify-between gap-3">
                   <dt>
-                    Early morning / late evening
+                    Early morning
                     <span className="ml-1 block text-xs text-ink-muted">
                       ({fees.earlyMorning.windowLabel})
                     </span>
@@ -126,8 +126,8 @@ export default function PricingTabs() {
                 <div className="flex items-baseline justify-between gap-3">
                   <dt>
                     Express / last-minute
-                    <span className="ml-1 text-xs text-ink-muted">
-                      (under {fees.express.windowHours} hours)
+                    <span className="ml-1 block text-xs text-ink-muted">
+                      ({fees.express.windowLabel})
                     </span>
                   </dt>
                   <dd className="shrink-0 font-serif text-base text-ink">
