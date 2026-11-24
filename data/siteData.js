@@ -343,6 +343,7 @@ export const fees = {
   express: {
     amount: 10000,
     from: '21:00',
+    startLabel: '9:00 PM',
     windowHours: 24,
     windowLabel: 'From 9:00 PM, or within 24 hours of booking',
     label: 'Express booking fee',
@@ -374,7 +375,7 @@ export const policies = [
   {
     id: 'express',
     title: 'Express bookings',
-    body: `Appointments starting from ${fees.express.from.replace(':00', '')} PM, or booked less than ${fees.express.windowHours} hours before the appointment, attract a ₦${fees.express.amount.toLocaleString('en-NG')} express fee.`,
+    body: `Appointments starting from ${fees.express.startLabel}, or booked less than ${fees.express.windowHours} hours before the appointment, attract a ₦${fees.express.amount.toLocaleString('en-NG')} express fee.`,
     confirm: 'CONFIRM WITH ARTIST',
   },
   {
@@ -687,7 +688,7 @@ export const faqs = [
   },
   {
     q: 'Are there extra fees for early morning or late evening appointments?',
-    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee. Appointments starting from 9:00 PM — or booked less than ${fees.express.windowHours} hours ahead — add a ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
+    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee. Appointments starting from ${fees.express.startLabel} — or booked less than ${fees.express.windowHours} hours ahead — add a ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
   },
   {
     q: 'How long does makeup take?',
