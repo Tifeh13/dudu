@@ -136,7 +136,9 @@ derived from the supplied display name (`baddestmakeupartist`) — replace
 7. **Cancellation policy** — awaiting artist wording (FAQ also flags this).
 8. **Lateness policy** — awaiting artist wording.
 9. **Deposit refund policy** — awaiting artist wording.
-10. **Testimonials** — sample copy only, visibly labelled in the reviews section.
+10. **Testimonials** — seven sample reviews with Yoruba client names, still
+    visibly labelled as samples in the reviews section. Replace the quotes with
+    real ones.
 11. **Domain** — `seo.siteUrl` is a placeholder until the real domain is set.
 12. **More portfolio photographs** — four looks are included; add the rest as
     described above.

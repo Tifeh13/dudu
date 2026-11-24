@@ -595,32 +595,65 @@ export const aboutImages = {
 
 /** ---------------------------------------------------------------------------
  * TESTIMONIALS
- * PLACEHOLDER: these are sample texts, not real client reviews. The artist
- * should replace them with verified reviews before launch.
+ * Seven sample reviews with Yoruba client names, as requested. They are not
+ * verified reviews — replace the quotes with real ones and remove
+ * `placeholder: true` once the artist has approved them.
  * ------------------------------------------------------------------------- */
 export const testimonials = [
   {
-    id: 'sample-1',
+    id: 'review-1',
     quote:
-      'A calm, unhurried appointment and a finish that still looked fresh at the end of the evening. Exactly the soft glam I asked for.',
-    name: 'Sample review',
-    meta: 'Bride · Lagos',
+      'My wedding makeup lasted from the morning until the last dance. My skin still looked like skin and I did not need to touch up once.',
+    name: 'Adetola Adeyemi',
+    meta: 'Bride · Lagos Island',
     placeholder: true,
   },
   {
-    id: 'sample-2',
+    id: 'review-2',
     quote:
-      'The gele sat perfectly all day and the makeup photographed beautifully in every light. I felt completely myself.',
-    name: 'Sample review',
+      'The gele was the first thing everyone asked about. It held all day and the pink eye photographed beautifully.',
+    name: 'Funmilayo Ojo',
     meta: 'Traditional ceremony · Ibadan',
     placeholder: true,
   },
   {
-    id: 'sample-3',
+    id: 'review-3',
     quote:
-      'Booking over WhatsApp was simple, the timing was clear, and the look was tailored to my outfit rather than copied from a picture.',
-    name: 'Sample review',
-    meta: 'Birthday · Lagos',
+      'I wanted soft glam that did not look heavy. She listened, showed me the colours before she started, and the finish was exactly what I pictured.',
+    name: 'Temilade Bakare',
+    meta: 'Soft glam · Ikoyi',
+    placeholder: true,
+  },
+  {
+    id: 'review-4',
+    quote:
+      'She arrived early, set up quietly in my living room and I was ready before my guests. The look lasted the whole evening.',
+    name: 'Ayomide Alabi',
+    meta: 'Birthday · Ikeja',
+    placeholder: true,
+  },
+  {
+    id: 'review-5',
+    quote:
+      'The trial made my wedding morning calm. Nothing was new on the day — we simply repeated the look we had already agreed on.',
+    name: 'Oluwaseun Adebayo',
+    meta: 'Bridal trial · Lagos Island',
+    placeholder: true,
+  },
+  {
+    id: 'review-6',
+    quote:
+      'Polished, comfortable and still completely me. I have already booked her for my sister’s introduction.',
+    name: 'Bolanle Ajayi',
+    meta: 'Wedding guest · Magodo',
+    placeholder: true,
+  },
+  {
+    id: 'review-7',
+    quote:
+      'It rained, we were running late, and she still finished on time. The makeup looked fresh in every photograph.',
+    name: 'Kehinde Salami',
+    meta: 'Introduction · Ibadan',
     placeholder: true,
   },
 ];
@@ -746,7 +779,8 @@ export const seo = {
  * 7. policies cancel     — PLACEHOLDER, awaiting artist wording.
  * 8. policies lateness   — PLACEHOLDER, awaiting artist wording.
  * 9. FAQs deposit refund — PLACEHOLDER, awaiting artist wording.
- * 10. testimonials       — PLACEHOLDER sample copy, not real reviews.
+ * 10. testimonials       — PLACEHOLDER sample copy (seven Yoruba-named
+ *                          reviews), not verified client reviews.
  * 11. portfolio images   — placeholder-capable paths; artist photos supplied
  *                          for four looks, more to be added.
  * 12. brand.founder      — drafted founder copy; artist should review it.
