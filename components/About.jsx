@@ -8,7 +8,7 @@ export default function About() {
     <section id="about" className="border-t border-line bg-cream-200 py-20 lg:py-28">
       <div className="shell">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow">About Me</p>
+          <p className="eyebrow">About Duduyemi</p>
           <h2 className="mt-5 font-serif text-3xl font-light tracking-[0.02em] sm:text-4xl">
             A quiet, considered approach to beauty.
           </h2>
@@ -63,6 +63,34 @@ export default function About() {
                 The Makeup Show, Lagos
               </figcaption>
             </figure>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.06} className="mt-16 border-t border-line pt-10">
+          <div className="grid gap-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+            <div>
+              <p className="eyebrow">The founder</p>
+              <h3 className="mt-5 font-serif text-3xl font-light leading-tight sm:text-[2.1rem]">
+                {brand.founder.name}
+              </h3>
+              <p className="mt-2 text-[9px] uppercase tracking-label text-accent">
+                {brand.founder.role}
+              </p>
+              <blockquote className="mt-7 border-l border-accent/50 pl-4 font-serif text-xl font-light italic leading-snug text-ink">
+                &ldquo;{brand.founder.quote}&rdquo;
+              </blockquote>
+              <p className="mt-7 font-serif text-2xl font-light italic text-ink-soft">
+                {brand.founder.name}
+              </p>
+              <p className="mt-1 text-[9px] uppercase tracking-label text-ink-muted">
+                Lagos &amp; Ibadan
+              </p>
+            </div>
+            <div className="space-y-4 text-sm leading-relaxed text-ink-soft">
+              {brand.founder.story.map((paragraph) => (
+                <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+              ))}
+            </div>
           </div>
         </Reveal>
 

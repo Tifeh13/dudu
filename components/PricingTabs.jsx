@@ -7,9 +7,6 @@ import { contact, fees, pricing } from '@/data/siteData';
 import { formatNaira } from '@/lib/formatNaira';
 import Reveal from './Reveal';
 
-const [earlyHour, earlyMinute] = fees.earlyMorning.before.split(':');
-const earlyMorningLabel = `${Number(earlyHour)}:${earlyMinute} AM`;
-
 const tabs = [
   { id: 'island', label: 'Island', meta: 'Lagos Island · Ikoyi · VI' },
   { id: 'mainland', label: 'Mainland', meta: 'Ikeja · Magodo · Maryland · Ogudu' },
@@ -117,9 +114,9 @@ export default function PricingTabs() {
               <dl className="mt-2 space-y-2 text-sm text-ink-soft">
                 <div className="flex items-baseline justify-between gap-3">
                   <dt>
-                    Early morning
-                    <span className="ml-1 text-xs text-ink-muted">
-                      (before {earlyMorningLabel})
+                    Early morning / late evening
+                    <span className="ml-1 block text-xs text-ink-muted">
+                      ({fees.earlyMorning.windowLabel})
                     </span>
                   </dt>
                   <dd className="shrink-0 font-serif text-base text-ink">

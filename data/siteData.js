@@ -36,6 +36,21 @@ export const brand = {
     'Long-wearing, photograph-friendly products and finishes.',
     'Looks built around your outfit, your venue and your comfort.',
   ],
+  // PLACEHOLDER (founder copy): written from the services offered and the
+  // artist's own working approach. No years of experience, awards, client
+  // counts or qualifications have been invented — the artist should read it
+  // once and personalise any detail she wants to add.
+  founder: {
+    name: 'Duduyemi',
+    role: 'Founder & Creative Director',
+    quote: 'The goal is never a different face. It is your face, in its finest light.',
+    story: [
+      'Duduyemi is the founder and creative director of Duduyemi Makeover, the Lagos and Ibadan studio she built around a single conviction: makeup should look like the best, most rested version of you — never like a mask.',
+      'Her work begins before the first product is opened. Skin tone and undertone, the shape of the eye, the weight and colour of the fabric, the light the day will be photographed in — all of it is studied first, and the look is built to belong to that face and that occasion rather than to a trend.',
+      'It is the same standard whether she is preparing a bride for the morning of her wedding, tying gele for a traditional ceremony, or finishing a quiet soft glam before a birthday dinner. Brides are offered a trial so nothing is left to chance, and every appointment is paced so the finish still looks fresh in the last photograph of the night.',
+      'As creative director she keeps the experience personal from start to finish: the consultation, the colour decisions, the final check in the mirror. That care travels with her — to the studio, and to your home, hotel or venue across Lagos and Ibadan.',
+    ],
+  },
   // PLACEHOLDER (about copy): no years of experience, awards or client counts
   // are claimed anywhere on the site.
   homeServiceNote: 'Home service across Lagos & Ibadan.',
@@ -312,11 +327,19 @@ export const pricing = {
  * FEES — thresholds and amounts are configurable here.
  * ------------------------------------------------------------------------- */
 export const fees = {
+  // Out-of-hours fee: appointments starting between 7:00 AM and 8:59 AM, or
+  // from 9:00 PM onwards. `from`/`before`/`lateFrom` drive the calculation;
+  // `windowLabel` is the human-readable version used across the site (keep the
+  // two in step when changing the windows).
   earlyMorning: {
     amount: 5000,
+    from: '07:00',
     before: '09:00',
-    label: 'Early morning fee',
-    description: 'Appointments starting before 9:00 AM.',
+    lateFrom: '21:00',
+    windowLabel: 'between 7:00 and 8:59 AM, or from 9:00 PM',
+    label: 'Early morning / late evening fee',
+    description:
+      'Appointments starting between 7:00 AM and 8:59 AM, or from 9:00 PM onwards.',
     requiresConfirmation: true, // displays "CONFIRM WITH ARTIST"
   },
   express: {
@@ -342,7 +365,7 @@ export const policies = [
   {
     id: 'early-morning',
     title: 'Early morning appointments',
-    body: `Appointments beginning before ${fees.earlyMorning.before.replace(':00', ':00')} AM attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning fee.`,
+    body: `Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning / late evening fee.`,
     confirm: 'CONFIRM WITH ARTIST',
   },
   {
@@ -627,6 +650,10 @@ export const faqs = [
     a: 'Come with clean, moisturised skin and any reference pictures you love. For home service, a table near natural light and a chair are all that is needed. Exact preparation guidance is confirmed with you before the day.',
   },
   {
+    q: 'Are there extra fees for early morning or late evening appointments?',
+    a: `Yes. Appointments starting ${fees.earlyMorning.windowLabel} attract a ₦${fees.earlyMorning.amount.toLocaleString('en-NG')} early morning / late evening fee. Bookings made less than ${fees.express.windowHours} hours before the appointment add a ₦${fees.express.amount.toLocaleString('en-NG')} express fee. Both are added automatically to your estimate, so you can see them before you send your request.`,
+  },
+  {
     q: 'How long does makeup take?',
     a: 'Regular makeup takes about 1 hour per person. Bridal makeup is approximately 2 hours, bridal trials and makeup with gele are approximately 1 hour 30 minutes. Gele styling adds 30 minutes per person.',
   },
@@ -713,7 +740,8 @@ export const seo = {
  * 2. brand.shortBio/bio  — drafted copy; artist should review and personalise.
  * 3. contact.socials     — Snapchat supplied as a display name only, no URL.
  * 4. pricing.mainland 4  — CONFIRM ₦316,000 (4 × ₦80,000 − ₦24,000 = ₦296,000).
- * 5. fees.earlyMorning   — CONFIRM WITH ARTIST (₦5,000 before 9:00 AM).
+ * 5. fees.earlyMorning   — CONFIRM WITH ARTIST (₦5,000 between 7:00 and
+ *                          8:59 AM, or from 9:00 PM).
  * 6. fees.express        — CONFIRM WITH ARTIST (₦10,000 under 24 hours).
  * 7. policies cancel     — PLACEHOLDER, awaiting artist wording.
  * 8. policies lateness   — PLACEHOLDER, awaiting artist wording.
@@ -721,5 +749,6 @@ export const seo = {
  * 10. testimonials       — PLACEHOLDER sample copy, not real reviews.
  * 11. portfolio images   — placeholder-capable paths; artist photos supplied
  *                          for four looks, more to be added.
- * 12. seo.siteUrl        — set the real domain before launch.
+ * 12. brand.founder      — drafted founder copy; artist should review it.
+ * 13. seo.siteUrl        — set the real domain before launch.
  * ------------------------------------------------------------------------- */

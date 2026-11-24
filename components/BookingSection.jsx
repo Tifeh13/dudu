@@ -20,7 +20,7 @@ import {
   serviceById,
   services,
 } from '@/data/siteData';
-import { calculateTotal, isEarlyMorning, isExpress } from '@/lib/calculateTotal';
+import { calculateTotal, isExpress, isOffHours } from '@/lib/calculateTotal';
 import { buildWhatsAppMessage, buildWhatsAppUrl } from '@/lib/buildWhatsAppMessage';
 import { formatNaira } from '@/lib/formatNaira';
 import { todayISO, validateAll, validateStep } from '@/lib/validation';
@@ -90,16 +90,6 @@ function readSavedValues() {
   } catch {
     return null;
   }
-}
-
-function formatClock(time) {
-  if (!time || typeof time !== 'string') return time;
-  const [hourText, minute = '00'] = time.split(':');
-  const hour = Number(hourText);
-  if (Number.isNaN(hour)) return time;
-  const suffix = hour >= 12 ? 'PM' : 'AM';
-  const display = hour % 12 === 0 ? 12 : hour % 12;
-  return `${display}:${minute} ${suffix}`;
 }
 
 function FeeRow({ active, title, condition, amount }) {
@@ -494,7 +484,9 @@ export default function BookingSection() {
           </div>
         );
 
-      case 'date':
+      case 'date': {
+        const offHours = isOffHours(values.time);
+        const express = isExpress(values.date, values.time);
         return (
           <div>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -538,30 +530,30 @@ export default function BookingSection() {
               </p>
               <ul className="divide-y divide-line">
                 <FeeRow
-                  active={isEarlyMorning(values.time)}
-                  title="Early morning start"
-                  condition={`Before ${formatClock(fees.earlyMorning.before)}`}
+                  active={offHours}
+                  title="Early morning / late evening"
+                  condition={fees.earlyMorning.windowLabel}
                   amount={fees.earlyMorning.amount}
                 />
                 <FeeRow
-                  active={isExpress(values.date, values.time)}
+                  active={express}
                   title="Express / last-minute booking"
                   condition={`Within ${fees.express.windowHours} hours of booking`}
                   amount={fees.express.amount}
                 />
               </ul>
               <p className="border-t border-line px-3.5 py-2.5 text-xs leading-relaxed text-ink-soft">
-                {isEarlyMorning(values.time) || isExpress(values.date, values.time) ? (
+                {offHours || express ? (
                   <>
                     <span className="text-ink">
                       {formatNaira(
-                        (isEarlyMorning(values.time) ? fees.earlyMorning.amount : 0) +
-                          (isExpress(values.date, values.time) ? fees.express.amount : 0)
+                        (offHours ? fees.earlyMorning.amount : 0) +
+                          (express ? fees.express.amount : 0)
                       )}{' '}
                       added
                     </span>{' '}
-                    to your total because of this time. It appears in your estimate
-                    and the WhatsApp request.
+                    to your total because of the time you chose. It appears in your
+                    estimate and the WhatsApp request.
                   </>
                 ) : (
                   'No time-based fee applies to the time you have chosen.'
@@ -574,6 +566,7 @@ export default function BookingSection() {
             </p>
           </div>
         );
+      }
 
       case 'address':
         return (

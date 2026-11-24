@@ -94,6 +94,8 @@ Everything lives in `pricing` in `data/siteData.js`:
 - `gele.pricePerPerson` is added separately and never discounted.
 - `depositPercentage` controls the deposit shown in the summary and messages.
 - `fees.earlyMorning` and `fees.express` hold the amounts and thresholds.
+  The out-of-hours fee applies to starts between 7:00 and 8:59 AM, or from
+  9:00 PM onwards; `windowLabel` is the text shown across the site.
 
 **CONFIRM:** Mainland 4 people is stored as ₦340,000 − ₦24,000 = ₦316,000 because
 that is the published total, but 4 × ₦80,000 − ₦24,000 = ₦296,000. Update the
@@ -123,11 +125,13 @@ derived from the supplied display name (`baddestmakeupartist`) — replace
 ## Placeholders and items to confirm
 
 1. **Tagline** — chosen from three options; replace with the artist's own.
-2. **Biography and about copy** — drafted professionally; no years of experience,
-   awards or client counts are claimed. Review and personalise.
+2. **Biography, founder write-up and about copy** — drafted professionally; no
+   years of experience, awards or client counts are claimed. Review and
+   personalise.
 3. **Snapchat** — display name only; no username or URL was supplied.
 4. **Mainland group of 4** — CONFIRM ₦316,000 vs ₦296,000.
-5. **Early morning fee** — ₦5,000 before 9:00 AM, labelled CONFIRM WITH ARTIST.
+5. **Early morning / late evening fee** — ₦5,000 between 7:00 and 8:59 AM, or
+   from 9:00 PM onwards; labelled CONFIRM WITH ARTIST.
 6. **Express fee** — ₦10,000 under 24 hours, labelled CONFIRM WITH ARTIST.
 7. **Cancellation policy** — awaiting artist wording (FAQ also flags this).
 8. **Lateness policy** — awaiting artist wording.

@@ -141,7 +141,7 @@ export default function BookingSummary({ values, totals, onEdit }) {
             )}
             {totals.earlyMorningFee > 0 && (
               <Row
-                label="Early morning"
+                label="Early morning / late evening"
                 value={formatNaira(totals.earlyMorningFee)}
                 sub={fees.earlyMorning.requiresConfirmation ? 'Confirm' : undefined}
               />
