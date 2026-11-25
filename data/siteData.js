@@ -579,6 +579,30 @@ export const portfolioVideos = [
     width: 464,
     height: 832,
   },
+  {
+    id: 'film-9',
+    type: 'video',
+    src: '/media/film-9.mp4',
+    poster: '/images/portfolio/video/film-9.jpg',
+    alt: 'Behind the scenes: dewy skin prep and base being built before a soft glam look.',
+    category: 'soft-glam',
+    categoryLabel: 'Soft Glam',
+    duration: '0:10',
+    width: 464,
+    height: 832,
+  },
+  {
+    id: 'film-10',
+    type: 'video',
+    src: '/media/film-10.mp4',
+    poster: '/images/portfolio/video/film-10.jpg',
+    alt: 'Soft glam with a smoky eye, sculpted brows and a glossy nude lip.',
+    category: 'soft-glam',
+    categoryLabel: 'Soft Glam',
+    duration: '0:24',
+    width: 464,
+    height: 832,
+  },
 ];
 
 /** Everything shown on /portfolio — photographs first, then films. */
