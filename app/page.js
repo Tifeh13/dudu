@@ -71,10 +71,10 @@ export default function HomePage() {
         <Hero />
         <About />
         <Services />
+        <Reviews />
         <Portfolio />
         <PricingTabs />
         <PoliciesBlock />
-        <Reviews />
         <FAQ />
         <BookingSection />
         <Contact />
