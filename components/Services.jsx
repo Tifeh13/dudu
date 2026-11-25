@@ -8,7 +8,7 @@ export default function Services() {
       <div className="shell">
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="eyebrow">Services</p>
-          <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
             Makeup made for you.
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-ink-soft">

@@ -55,7 +55,7 @@ const initialValues = {
 const stepCopy = {
   service: {
     title: 'Choose your service',
-    hint: 'Each service is tailored to the occasion. Prices are confirmed by location and group size.',
+    hint: 'Each service follows the occasion. Prices depend on location and group size.',
   },
   location: {
     title: 'Where is your appointment?',
@@ -786,7 +786,7 @@ export default function BookingSection() {
       <div className="shell">
         <Reveal className="max-w-2xl">
           <p className="eyebrow">Booking</p>
-          <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
             Request your appointment.
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-ink-soft">
@@ -809,7 +809,7 @@ export default function BookingSection() {
                       Awaiting confirmation
                     </span>
                   </div>
-                  <p className="mt-3 font-serif text-2xl font-light">
+                  <p className="mt-3 font-serif text-2xl font-normal">
                     Your request is with Duduyemi.
                   </p>
                   <dl className="mt-4 grid gap-3 text-xs sm:grid-cols-2">
@@ -939,7 +939,7 @@ export default function BookingSection() {
                     exit={{ opacity: 0, x: reduceMotion ? 0 : -14 }}
                     transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <h3 className="font-serif text-2xl font-light">
+                    <h3 className="font-serif text-2xl font-normal">
                       {stepCopy[bookingSteps[step].id].title}
                     </h3>
                     <p className="mb-6 mt-2 max-w-lg text-xs leading-relaxed text-ink-muted">

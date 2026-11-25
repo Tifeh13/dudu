@@ -95,7 +95,7 @@ export default function BookingSummary({ values, totals, onEdit }) {
 
       {incomplete ? (
         <div className="border-t border-line px-5 py-5">
-          <p className="font-serif text-xl font-light">Your estimate appears here.</p>
+          <p className="font-serif text-xl font-normal">Your estimate appears here.</p>
           <p className="mt-3 text-[11px] leading-relaxed text-ink-muted">
             Choose a service and an area to see the makeup total, deposit and timing.
           </p>
@@ -107,7 +107,7 @@ export default function BookingSummary({ values, totals, onEdit }) {
         </div>
       ) : totals.quoteRequired ? (
         <div className="border-t border-line px-5 py-5">
-          <p className="font-serif text-xl font-light">
+          <p className="font-serif text-xl font-normal">
             {service ? 'Price on request.' : 'Your estimate appears here.'}
           </p>
           {service && (
@@ -159,7 +159,7 @@ export default function BookingSummary({ values, totals, onEdit }) {
             <span className="text-[10px] uppercase tracking-label text-ink-soft">
               Estimated total
             </span>
-            <span className="font-serif text-2xl font-light">{formatNaira(totals.total)}</span>
+            <span className="font-serif text-2xl font-normal">{formatNaira(totals.total)}</span>
           </div>
 
           <div className="mt-3 flex items-baseline justify-between gap-3">

@@ -119,7 +119,7 @@ export default function Navbar() {
                   <SiteLink
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block py-4 font-serif text-2xl font-light text-ink"
+                    className="block py-4 font-serif text-2xl font-normal text-ink"
                   >
                     {link.label}
                   </SiteLink>

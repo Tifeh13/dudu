@@ -12,7 +12,7 @@ export default function Contact() {
       <div className="shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
         <Reveal>
           <p className="text-[10px] uppercase tracking-label text-cream-50/55">Contact</p>
-          <h2 className="mt-5 font-serif text-3xl font-light leading-tight text-cream-50 sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal leading-tight text-cream-50 sm:text-4xl">
             Let&rsquo;s talk about <span className="italic">your date</span>.
           </h2>
           <p className="mt-5 max-w-sm text-sm leading-relaxed text-cream-50/70">
@@ -39,7 +39,7 @@ export default function Contact() {
             </span>
           </div>
 
-          <p className="mt-9 max-w-md border-t border-cream-50/15 pt-6 font-serif text-lg font-light italic leading-relaxed text-cream-50/80">
+          <p className="mt-9 max-w-md border-t border-cream-50/15 pt-6 font-serif text-lg font-normal italic leading-relaxed text-cream-50/80">
             “{brand.tagline}”
           </p>
         </Reveal>

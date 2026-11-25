@@ -9,7 +9,7 @@ export default function About() {
       <div className="shell">
         <Reveal className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">About Duduyemi</p>
-          <h2 className="mt-5 font-serif text-3xl font-light tracking-[0.02em] sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal tracking-[0.02em] sm:text-4xl">
             A quiet, considered approach to beauty.
           </h2>
           <p className="mt-4 text-[9px] uppercase tracking-label text-ink-muted">
@@ -70,16 +70,16 @@ export default function About() {
           <div className="grid gap-9 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
             <div>
               <p className="eyebrow">The founder</p>
-              <h3 className="mt-5 font-serif text-3xl font-light leading-tight sm:text-[2.1rem]">
+              <h3 className="mt-5 font-serif text-3xl font-normal leading-tight sm:text-[2.1rem]">
                 {brand.founder.name}
               </h3>
               <p className="mt-2 text-[9px] uppercase tracking-label text-accent">
                 {brand.founder.role}
               </p>
-              <blockquote className="mt-7 border-l border-accent/50 pl-4 font-serif text-xl font-light italic leading-snug text-ink">
+              <blockquote className="mt-7 border-l border-accent/50 pl-4 font-serif text-xl font-normal italic leading-snug text-ink">
                 &ldquo;{brand.founder.quote}&rdquo;
               </blockquote>
-              <p className="mt-7 font-serif text-2xl font-light italic text-ink-soft">
+              <p className="mt-7 font-serif text-2xl font-normal italic text-ink-soft">
                 {brand.founder.name}
               </p>
               <p className="mt-1 text-[9px] uppercase tracking-label text-ink-muted">
@@ -114,7 +114,7 @@ export default function About() {
               <p className="flex items-center gap-2 text-[10px] uppercase tracking-label text-accent">
                 <MapPin size={13} strokeWidth={1.5} /> Home service
               </p>
-              <p className="mt-4 font-serif text-2xl font-light leading-snug">
+              <p className="mt-4 font-serif text-2xl font-normal leading-snug">
                 {brand.homeServiceNote}
               </p>
               <p className="mt-3 text-sm leading-relaxed text-ink-soft">

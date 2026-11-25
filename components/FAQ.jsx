@@ -15,7 +15,7 @@ export default function FAQ() {
       <div className="shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
         <Reveal>
           <p className="eyebrow">FAQ</p>
-          <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
             Good to know.
           </h2>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">

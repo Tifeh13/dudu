@@ -22,7 +22,7 @@ export default function Reviews() {
       <div className="shell">
         <Reveal className="text-center">
           <p className="eyebrow">Reviews</p>
-          <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
             In their words.
           </h2>
         </Reveal>
@@ -47,7 +47,7 @@ export default function Reviews() {
                   exit={{ opacity: 0, x: reduceMotion ? 0 : direction * -24 }}
                   transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <p className="font-serif text-[1.4rem] font-light italic leading-relaxed text-ink sm:text-3xl">
+                  <p className="font-serif text-[1.4rem] font-normal italic leading-relaxed text-ink sm:text-3xl">
                     “{review.quote}”
                   </p>
                   <footer className="mt-7">

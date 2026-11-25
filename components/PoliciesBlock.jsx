@@ -8,7 +8,7 @@ export default function PoliciesBlock() {
       <div className="shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
         <Reveal>
           <p className="eyebrow">Booking policies</p>
-          <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
+          <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
             Before you book.
           </h2>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
@@ -17,7 +17,7 @@ export default function PoliciesBlock() {
           </p>
           <div className="mt-7 border border-line bg-cream-50 p-5">
             <p className="text-[10px] uppercase tracking-label text-accent">Deposit</p>
-            <p className="mt-2 font-serif text-xl font-light">
+            <p className="mt-2 font-serif text-xl font-normal">
               {pricing.depositPercentage}% secures your appointment.
             </p>
             <p className="mt-2 text-xs leading-relaxed text-ink-muted">

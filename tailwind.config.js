@@ -28,7 +28,7 @@ module.exports = {
         line: '#D9D0C1',
       },
       fontFamily: {
-        serif: ['var(--font-serif)', 'Cormorant Garamond', 'Georgia', 'serif'],
+        serif: ['var(--font-serif)', 'Lora', 'Georgia', 'serif'],
         sans: ['var(--font-sans)', 'DM Sans', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {

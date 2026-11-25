@@ -23,12 +23,12 @@ export default function Portfolio() {
         <div className="flex flex-col justify-between gap-7 lg:flex-row lg:items-end">
           <Reveal>
             <p className="eyebrow">Portfolio</p>
-            <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
-              Selected work.
+            <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
+              A selection of work.
             </h2>
             <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-soft">
-              A small edit of bridal, traditional and soft glam looks. More work is
-              added as each season is photographed.
+              A small edit of bridal, traditional and soft glam looks. More work joins
+              the gallery as each season is photographed.
             </p>
           </Reveal>
 

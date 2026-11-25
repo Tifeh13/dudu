@@ -30,7 +30,7 @@ export default function PortfolioPage() {
         <section className="border-b border-line bg-cream py-14 lg:py-20">
           <div className="shell">
             <p className="eyebrow">Portfolio</p>
-            <h1 className="mt-5 max-w-3xl font-serif text-4xl font-light leading-[1.02] sm:text-5xl lg:text-6xl">
+            <h1 className="mt-5 max-w-3xl font-serif text-4xl font-normal leading-[1.02] sm:text-5xl lg:text-6xl">
               The full portfolio.
             </h1>
             <p className="mt-5 max-w-xl text-sm leading-relaxed text-ink-soft">
@@ -49,7 +49,7 @@ export default function PortfolioPage() {
           <div className="shell flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <p className="eyebrow">Your turn</p>
-              <h2 className="mt-4 max-w-md font-serif text-3xl font-light">
+              <h2 className="mt-4 max-w-md font-serif text-3xl font-normal">
                 Ready for your own look?
               </h2>
             </div>

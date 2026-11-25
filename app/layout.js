@@ -4,10 +4,12 @@ import { seo } from '@/data/siteData';
 import HashScroll from '@/components/HashScroll';
 
 // Self-hosted to keep builds independent of the Google Fonts request.
+// Lora carries the headings: sturdier strokes and a taller x-height than
+// Cormorant Garamond, so it stays readable on a phone screen.
 const serif = localFont({
   src: [
-    { path: './fonts/cormorant-garamond.woff2', weight: '300 700', style: 'normal' },
-    { path: './fonts/cormorant-garamond-italic.woff2', weight: '300 700', style: 'italic' },
+    { path: './fonts/lora-normal.woff2', weight: '400 700', style: 'normal' },
+    { path: './fonts/lora-italic.woff2', weight: '400 700', style: 'italic' },
   ],
   variable: '--font-serif',
   display: 'swap',

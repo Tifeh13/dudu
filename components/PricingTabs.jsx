@@ -31,7 +31,7 @@ export default function PricingTabs() {
         <div>
           <Reveal>
             <p className="eyebrow">Pricing</p>
-            <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
+            <h2 className="mt-5 font-serif text-3xl font-normal sm:text-4xl">
               Priced clearly, before you book.
             </h2>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
@@ -157,7 +157,7 @@ export default function PricingTabs() {
             <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line pb-5">
               <div>
                 <p className="eyebrow">{table.shortLabel} pricing</p>
-                <p className="mt-2 font-serif text-2xl font-light">
+                <p className="mt-2 font-serif text-2xl font-normal">
                   Makeup, per person
                 </p>
               </div>

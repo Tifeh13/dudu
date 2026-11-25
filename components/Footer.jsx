@@ -19,7 +19,7 @@ export default function Footer() {
                 className="h-24 w-auto sm:h-28"
               />
             </SiteLink>
-            <p className="mt-5 max-w-xs font-serif text-lg font-light italic text-ink-soft">
+            <p className="mt-5 max-w-xs font-serif text-lg font-normal italic text-ink-soft">
               {brand.tagline}
             </p>
             <p className="mt-4 max-w-xs text-xs leading-relaxed text-ink-muted">

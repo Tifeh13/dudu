@@ -15,7 +15,7 @@ export const brand = {
   initials: 'DM',
   logo: '/images/brand/logo.png',
   // PLACEHOLDER (tagline): three options supplied below — the strongest is in use.
-  tagline: 'Beauty, made personal.',
+  tagline: 'Beauty that feels personal.',
   taglineOptions: [
     'Beauty, made personal.',
     'The art of a flawless finish.',
@@ -32,7 +32,7 @@ export const brand = {
     'The result is a finish that reads beautifully in person and photographs just as well: skin that looks like skin, colour that flatters, and details that hold from the first photograph to the last dance. Services are offered from the studio or brought to your home, hotel or venue across Lagos and Ibadan.',
   ],
   approach: [
-    'A considered consultation before any makeup is applied.',
+    'A considered consultation before any makeup goes on.',
     'Long-wearing, photograph-friendly products and finishes.',
     'Every look is shaped around your outfit, your venue and your comfort.',
   ],
@@ -128,7 +128,7 @@ export const services = [
     id: 'bridal-makeup',
     name: 'Bridal Makeup',
     description:
-      'A considered bridal look built around your dress, your venue and the light — long-wearing, photograph-ready and finished with a soft, luminous touch.',
+      'A considered bridal look that builds around your dress, your venue and the light, stays photograph-ready for hours and ends in a soft, luminous finish.',
     durationMinutes: 120,
     durationLabel: '2 hours',
     quoteOnly: true,
@@ -150,7 +150,7 @@ export const services = [
     id: 'introduction-makeup',
     name: 'Introduction Makeup',
     description:
-      'Understated elegance for your introduction — polished, personal and designed to feel entirely like you.',
+      'Understated elegance for your introduction — polished, personal and entirely like you.',
     durationMinutes: null,
     durationLabel: 'Duration confirmed on enquiry',
     quoteOnly: true,
@@ -170,7 +170,7 @@ export const services = [
     id: 'party-event',
     name: 'Party & Event Makeup',
     description:
-      'Occasion-ready glamour for weddings, dinners and celebrations, tailored to your outfit and the mood of the evening.',
+      'Occasion-ready glamour for weddings, dinners and celebrations, following your outfit and the mood of the evening.',
     durationMinutes: 60,
     durationLabel: '1 hour',
     quoteOnly: false,
@@ -191,7 +191,7 @@ export const services = [
     id: 'makeup-and-gele',
     name: 'Makeup & Gele',
     description:
-      'A complete look, from base to beautifully tied gele, styled to sit in proportion with your outfit and headpiece.',
+      'A complete look, from base to beautifully tied gele, sitting in proportion with your outfit and headpiece.',
     durationMinutes: 90,
     durationLabel: '1 hour 30 minutes',
     quoteOnly: false,
@@ -211,7 +211,7 @@ export const services = [
     id: 'home-service',
     name: 'Home-Service Makeup',
     description:
-      'The full studio experience brought to you, at home or at your venue, across Lagos and Ibadan.',
+      'The full studio experience, at your home or venue, across Lagos and Ibadan.',
     durationMinutes: 60,
     durationLabel: '1 hour',
     quoteOnly: false,
@@ -413,9 +413,8 @@ export const policies = [
   },
   {
     id: 'cancellation',
-    title: 'Cancellations',
-    body: 'Awaiting confirmation from the artist.',
-    pending: true, // PLACEHOLDER
+    title: 'Cancellations & refunds',
+    body: 'Cancel two days or more before your appointment and your deposit is refunded in full. Cancel the day before and half of the deposit is refunded.',
   },
   {
     id: 'lateness',
@@ -746,8 +745,7 @@ export const faqs = [
   },
   {
     q: 'Is the deposit refundable?',
-    a: 'The cancellation and refund terms are awaiting confirmation from the artist and will be published here once confirmed.',
-    pending: true, // PLACEHOLDER
+    a: 'Yes. Cancel two days or more before your appointment and your deposit is refunded in full. Cancel the day before and half of the deposit is refunded.',
   },
 ];
 
@@ -822,9 +820,7 @@ export const seo = {
  * 5. fees.earlyMorning   — CONFIRM WITH ARTIST (₦5,000, 8:00–8:59 AM).
  * 6. fees.express        — CONFIRM WITH ARTIST (₦10,000, from 9:00 PM
  *                          onwards).
- * 7. policies cancel     — PLACEHOLDER, awaiting artist wording.
- * 8. policies lateness   — PLACEHOLDER, awaiting artist wording.
- * 9. FAQs deposit refund — PLACEHOLDER, awaiting artist wording.
+ * 7. policies lateness   — PLACEHOLDER, awaiting artist wording.
  * 10. testimonials       — PLACEHOLDER sample copy (seven Yoruba-named
  *                          reviews), not verified client reviews.
  * 11. portfolio images   — placeholder-capable paths; artist photos supplied

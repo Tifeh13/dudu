@@ -16,19 +16,19 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <h1 className="mt-7 max-w-[13ch] font-serif text-[clamp(2.6rem,6.4vw,4.6rem)] font-light leading-[0.98] tracking-[-0.01em] text-ink">
+            <h1 className="mt-7 max-w-[13ch] font-serif text-[clamp(2.6rem,6.4vw,4.6rem)] font-normal leading-[0.98] tracking-[-0.01em] text-ink">
               Makeup for the moments you keep.
             </h1>
           </Reveal>
 
           <Reveal delay={0.14}>
-            <p className="mt-6 font-serif text-xl font-light italic text-accent sm:text-2xl">
+            <p className="mt-6 font-serif text-xl font-normal italic text-accent sm:text-2xl">
               {brand.tagline}
             </p>
             <p className="mt-5 max-w-md text-sm leading-relaxed text-ink-soft">
               Bridal, traditional and event makeup, brought to your home, hotel or
-              venue — soft, luminous finishes designed to hold from the first
-              photograph to the last dance.
+              venue — soft, luminous finishes that hold from the first photograph to
+              the last dance.
             </p>
           </Reveal>
 
@@ -75,7 +75,7 @@ export default function Hero() {
                 <p className="text-[9px] uppercase tracking-label text-cream-50/80">
                   Lagos &amp; Ibadan
                 </p>
-                <p className="mt-1 font-serif text-lg font-light">
+                <p className="mt-1 font-serif text-lg font-normal">
                   Home-service makeup artistry
                 </p>
               </div>
