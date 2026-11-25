@@ -1,4 +1,4 @@
-import { contact, policies, pricing } from '@/data/siteData';
+import { contact, hasPaymentDetails, payment, policies, pricing } from '@/data/siteData';
 import { formatNaira } from '@/lib/formatNaira';
 import Reveal from './Reveal';
 
@@ -23,6 +23,38 @@ export default function PoliciesBlock() {
             <p className="mt-2 text-xs leading-relaxed text-ink-muted">
               Your date is secured only after the deposit is received and confirmed.
             </p>
+
+            <div className="mt-4 border-t border-line pt-4">
+              <p className="text-[10px] uppercase tracking-label text-ink-muted">
+                Bank transfer
+              </p>
+              {hasPaymentDetails ? (
+                <dl className="mt-2 space-y-1.5 text-xs text-ink-soft">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt>Bank</dt>
+                    <dd className="text-right text-ink">{payment.bankName}</dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt>Account name</dt>
+                    <dd className="text-right text-ink">{payment.accountName}</dd>
+                  </div>
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt>Account number</dt>
+                    <dd className="text-right font-serif text-base text-ink">
+                      {payment.accountNumber}
+                    </dd>
+                  </div>
+                </dl>
+              ) : (
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                  Transfer details are shared on WhatsApp with your deposit
+                  confirmation.
+                </p>
+              )}
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">
+                {payment.note}
+              </p>
+            </div>
           </div>
         </Reveal>
 

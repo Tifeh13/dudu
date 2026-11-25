@@ -71,9 +71,9 @@ export default function HomePage() {
         <Hero />
         <About />
         <Services />
+        <Portfolio />
         <PricingTabs />
         <PoliciesBlock />
-        <Portfolio />
         <Reviews />
         <FAQ />
         <BookingSection />

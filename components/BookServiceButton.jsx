@@ -2,7 +2,7 @@
 
 import { useReducedMotion } from 'framer-motion';
 
-export default function BookServiceButton({ serviceId, label = 'Book This' }) {
+export default function BookServiceButton({ serviceId, label = 'Book Appointment' }) {
   const reduceMotion = useReducedMotion();
 
   const handleClick = () => {

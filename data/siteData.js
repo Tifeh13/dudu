@@ -34,7 +34,7 @@ export const brand = {
   approach: [
     'A considered consultation before any makeup is applied.',
     'Long-wearing, photograph-friendly products and finishes.',
-    'Looks built around your outfit, your venue and your comfort.',
+    'Every look is shaped around your outfit, your venue and your comfort.',
   ],
   // PLACEHOLDER (founder copy): written from the services offered and the
   // artist's own working approach. No years of experience, awards, client
@@ -110,8 +110,8 @@ export const navLinks = [
   { label: 'Home', href: '/#home' },
   { label: 'About', href: '/#about' },
   { label: 'Services', href: '/#services' },
-  { label: 'Pricing', href: '/#pricing' },
   { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Pricing', href: '/#pricing' },
   { label: 'Reviews', href: '/#reviews' },
   { label: 'Contact', href: '/#contact' },
 ];
@@ -260,9 +260,12 @@ export const areaGroups = [
   },
   {
     id: 'other',
-    label: 'Other',
-    note: 'Ibadan and every other location',
-    areas: [{ id: 'other', name: 'Any other location', zone: 'other' }],
+    label: 'Ibadan & other locations',
+    note: 'Quoted individually',
+    areas: [
+      { id: 'ibadan', name: 'Ibadan', zone: 'other' },
+      { id: 'other', name: 'Any other location', zone: 'other' },
+    ],
   },
 ];
 
@@ -286,8 +289,8 @@ export const pricing = {
     note: '₦20,000 per person. Gele is never discounted.',
   },
   discountNote: 'Group discount is applied to makeup only — never to gele.',
-  outsideAreaNote:
-    'Appointments outside Lagos Island, Ikoyi, Victoria Island, Ikeja, Magodo, Maryland and Ogudu GRA are quoted individually.',
+  ibadanNote:
+    'Ibadan appointments are quoted individually — send your address on WhatsApp and the price is confirmed before you pay.',
   groupFivePlusNote: 'Custom quote — contact us on WhatsApp.',
   island: {
     id: 'island',
@@ -322,6 +325,23 @@ export const pricing = {
     gelePerPersonMinutes: 30,
   },
 };
+
+/**
+ * DEPOSIT / TRANSFER DETAILS
+ * PLACEHOLDER: the artist has not supplied a bank name, account name or
+ * account number yet. While these stay empty the site says the details are
+ * shared on WhatsApp instead of showing a wrong account.
+ * ------------------------------------------------------------------------- */
+export const payment = {
+  bankName: '',
+  accountName: '',
+  accountNumber: '',
+  note: 'Send your transfer receipt on WhatsApp so the deposit can be confirmed and your date secured.',
+};
+
+export const hasPaymentDetails = Boolean(
+  payment.bankName && payment.accountName && payment.accountNumber
+);
 
 /** ---------------------------------------------------------------------------
  * FEES — thresholds and amounts are configurable here.
@@ -675,7 +695,7 @@ export const faqs = [
   },
   {
     q: 'What areas do you cover?',
-    a: 'Lagos Island, Ikoyi, Victoria Island, Ikeja, Magodo, Maryland and Ogudu GRA are covered by the published prices. Ibadan and any other location can be quoted on request.',
+    a: 'Lagos Island, Ikoyi, Victoria Island, Ikeja, Magodo, Maryland and Ogudu GRA use the published prices. Ibadan appointments are quoted individually — send your address on WhatsApp for a price. Any other location is also quoted individually.',
   },
   {
     q: 'Do you offer home service?',
@@ -788,4 +808,7 @@ export const seo = {
  *                          for four looks, more to be added.
  * 12. brand.founder      — drafted founder copy; artist should review it.
  * 13. seo.siteUrl        — set the real domain before launch.
+ * 14. payment            — bank name, account name and account number not
+ *                          supplied yet; the site asks visitors to get them on
+ *                          WhatsApp until they are filled in.
  * ------------------------------------------------------------------------- */

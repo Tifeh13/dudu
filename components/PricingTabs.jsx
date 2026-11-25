@@ -100,13 +100,13 @@ export default function PricingTabs() {
                 rel="noopener noreferrer"
                 className="mt-2 inline-flex items-center gap-2 border-b border-ink/25 pb-1 text-[10px] uppercase tracking-label hover:border-ink"
               >
-                <MessageCircle size={12} strokeWidth={1.5} /> Chat on WhatsApp
+                <MessageCircle size={12} strokeWidth={1.5} /> Request a quote
               </a>
             </div>
 
-            <div className="border-l border-line pl-4">
-              <p className="text-[10px] uppercase tracking-label text-ink">Outside these areas</p>
-              <p className="mt-1 text-sm text-ink-soft">{pricing.outsideAreaNote}</p>
+            <div className="border-l border-accent/60 pl-4">
+              <p className="text-[10px] uppercase tracking-label text-ink">Ibadan</p>
+              <p className="mt-1 text-sm text-ink-soft">{pricing.ibadanNote}</p>
             </div>
 
             <div className="border-l border-line pl-4">

@@ -59,7 +59,7 @@ const stepCopy = {
   },
   location: {
     title: 'Where is your appointment?',
-    hint: 'Home service across Lagos and Ibadan. Areas outside the list are quoted individually.',
+    hint: 'Home service across Lagos and Ibadan. Ibadan appointments are quoted individually.',
   },
   people: {
     title: 'How many people?',
@@ -481,12 +481,13 @@ export default function BookingSection() {
                     );
                   })}
                 </div>
-                {group.id === 'other' && values.areaId === 'other' && (
-                  <p className="mt-2 text-xs text-ink-muted">
-                    Outside-area bookings are quoted individually — send your location
-                    on WhatsApp for a price.
-                  </p>
-                )}
+                {group.id === 'other' &&
+                  (values.areaId === 'ibadan' || values.areaId === 'other') && (
+                    <p className="mt-2 text-xs text-ink-muted">
+                      Ibadan and other locations are quoted individually — send your
+                      address on WhatsApp for a price.
+                    </p>
+                  )}
               </fieldset>
             ))}
             <FieldError id="error-areaId" message={errors.areaId} />

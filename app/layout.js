@@ -2,6 +2,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import { seo } from '@/data/siteData';
 import HashScroll from '@/components/HashScroll';
+import RefreshOnReturn from '@/components/RefreshOnReturn';
 
 // Self-hosted to keep builds independent of the Google Fonts request.
 const serif = localFont({
@@ -79,6 +80,7 @@ export default function RootLayout({ children }) {
     <html lang="en-NG" className={`${serif.variable} ${sans.variable}`}>
       <body>
         <HashScroll />
+        <RefreshOnReturn />
         {children}
       </body>
     </html>

@@ -122,10 +122,10 @@ export default function About() {
                 in {contact.location} are available on request.
               </p>
               <a
-                href="#contact"
+                href="#pricing"
                 className="mt-6 inline-block border-b border-ink/30 pb-1 text-[10px] uppercase tracking-label transition-colors hover:border-ink"
               >
-                Check your area
+                See areas &amp; pricing
               </a>
             </div>
           </Reveal>

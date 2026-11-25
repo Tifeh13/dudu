@@ -9,7 +9,7 @@ export default function Services() {
         <Reveal className="mx-auto max-w-xl text-center">
           <p className="eyebrow">Services</p>
           <h2 className="mt-5 font-serif text-3xl font-light sm:text-4xl">
-            Looks designed around you.
+            Makeup made for you.
           </h2>
           <p className="mt-4 text-sm leading-relaxed text-ink-soft">
             From bridal mornings to last-minute celebrations — every service begins

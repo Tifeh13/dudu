@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { brand, contact, navLinks } from '@/data/siteData';
 import SiteLink from './SiteLink';
-import SkipLink from './SkipLink';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -38,8 +37,6 @@ export default function Navbar() {
 
   return (
     <>
-      {pathname !== '/' ? <SkipLink /> : null}
-
       <header
         className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ${
           scrolled
