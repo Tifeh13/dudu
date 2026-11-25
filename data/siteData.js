@@ -328,14 +328,13 @@ export const pricing = {
 
 /**
  * DEPOSIT / TRANSFER DETAILS
- * PLACEHOLDER: the artist has not supplied a bank name, account name or
- * account number yet. While these stay empty the site says the details are
- * shared on WhatsApp instead of showing a wrong account.
+ * Supplied by the artist. If any of the three values is emptied, the site
+ * falls back to saying the details are shared on WhatsApp.
  * ------------------------------------------------------------------------- */
 export const payment = {
-  bankName: '',
-  accountName: '',
-  accountNumber: '',
+  bankName: 'Access Bank',
+  accountName: 'Duduyemi Makeover',
+  accountNumber: '1803013093',
   note: 'Send your transfer receipt on WhatsApp so the deposit can be confirmed and your date secured.',
 };
 
@@ -832,7 +831,4 @@ export const seo = {
  *                          for four looks, more to be added.
  * 12. brand.founder      — drafted founder copy; artist should review it.
  * 13. seo.siteUrl        — set the real domain before launch.
- * 14. payment            — bank name, account name and account number not
- *                          supplied yet; the site asks visitors to get them on
- *                          WhatsApp until they are filled in.
  * ------------------------------------------------------------------------- */

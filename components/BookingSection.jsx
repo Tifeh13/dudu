@@ -202,6 +202,21 @@ export default function BookingSection() {
     setHydrated(true);
   }, []);
 
+  // Coming back from WhatsApp or another tab: re-read the saved request so the
+  // status card is current, without forcing a full page reload.
+  useEffect(() => {
+    const sync = () => {
+      if (document.visibilityState !== 'visible') return;
+      setReceipt(readReceipt());
+    };
+    document.addEventListener('visibilitychange', sync);
+    window.addEventListener('pageshow', sync);
+    return () => {
+      document.removeEventListener('visibilitychange', sync);
+      window.removeEventListener('pageshow', sync);
+    };
+  }, []);
+
   // Persist the draft. No payment or sensitive data is stored.
   useEffect(() => {
     if (!hydrated) return;
